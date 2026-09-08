@@ -17,7 +17,1618 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style/style.css">
+  <style id="embedded-site-styles">
+/* ==========================================================================
+   FARHEEN'S BIRTHDAY WEBSITE - MODERN LUXURY STYLES & MOBILE OPTIMIZATIONS
+   ========================================================================== */
+
+:root {
+  --bg-color: #f7f4ee;
+  --bg-gradient: linear-gradient(135deg, #faf7f2 0%, #f4ece1 50%, #ede3d4 100%);
+  --text-dark: #1c1917;
+  --text-muted: #6b6255;
+  --rose-primary: #e11d48;
+  --rose-glow: #fb7185;
+  --amber-gold: #d97706;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(225, 29, 72, 0.18);
+  --font-heading: 'Syne', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-romantic: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-handwritten: 'Dancing Script', cursive;
+  --font-body: 'Outfit', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  background: var(--bg-gradient);
+  font-family: var(--font-body);
+  color: var(--text-dark);
+}
+
+/* Background Particle Canvas */
+#sparkle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Site Container */
+.site-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+/* SECTION BASE STYLING */
+.page-section {
+  position: relative;
+  width: 100%;
+  padding: 70px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 30px;
+  max-width: 640px;
+  padding: 0 10px;
+}
+
+.sub-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  background: rgba(225, 29, 72, 0.08);
+  border: 1px solid rgba(225, 29, 72, 0.2);
+  border-radius: 30px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--rose-primary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-header h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--text-dark);
+  line-height: 1.25;
+}
+
+.section-subtitle {
+  font-size: clamp(0.85rem, 2.5vw, 0.96rem);
+  color: var(--text-muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   SECTION 1: HERO & BACKGROUND MOVING PHOTO RAIL
+   ========================================================================== */
+.hero-section {
+  min-height: 100vh;
+  padding: 60px 20px 70px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* 3D Curved Moving Photo Rail Track (BEHIND HERO CONTENT) */
+.hero-rail-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.88;
+}
+
+#rail-svg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.photo-rail-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.rail-photo-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 85px;
+  height: 115px;
+  background: #ffffff;
+  padding: 4px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+  pointer-events: auto;
+  transform-origin: center center;
+  transition: box-shadow 0.2s ease;
+  user-select: none;
+  will-change: transform;
+}
+
+.rail-photo-card:hover {
+  z-index: 250 !important;
+  box-shadow: 0 20px 40px rgba(225, 29, 72, 0.45);
+}
+
+.rail-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Hero Content Layer (Frosted Glass Floating Foreground) */
+.hero-content-center {
+  position: relative;
+  z-index: 10;
+  max-width: 620px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 45px rgba(225, 29, 72, 0.1), 0 4px 18px rgba(0, 0, 0, 0.04);
+  border-radius: 30px;
+  padding: 42px 30px;
+  margin: 10px auto;
+  transition: transform 0.3s ease;
+}
+
+.badge-tag {
+  display: inline-block;
+  padding: 6px 18px;
+  background: rgba(225, 29, 72, 0.08);
+  border: 1px solid rgba(225, 29, 72, 0.22);
+  border-radius: 30px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--rose-primary);
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+}
+
+.main-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 6.5vw, 3.6rem);
+  line-height: 1.08;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.highlight-name {
+  font-family: var(--font-handwritten);
+  font-size: clamp(3.2rem, 8.5vw, 4.8rem);
+  color: var(--rose-primary);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.heart-icon {
+  font-size: clamp(2.2rem, 6vw, 3rem);
+  animation: heartPulse 1.6s infinite ease-in-out;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+
+.hero-desc {
+  font-size: clamp(0.9rem, 2.5vw, 1.02rem);
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 16px 0 24px 0;
+  max-width: 500px;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 30px;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  min-height: 46px;
+}
+
+.btn-action:active {
+  transform: scale(0.96);
+}
+
+.btn-music {
+  background: var(--text-dark);
+  color: white;
+  box-shadow: 0 6px 18px rgba(28, 25, 23, 0.25);
+}
+
+.btn-surprise {
+  background: linear-gradient(135deg, var(--rose-primary), var(--rose-glow));
+  color: white;
+  box-shadow: 0 6px 20px rgba(225, 29, 72, 0.35);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--text-dark);
+  color: var(--text-dark);
+}
+
+.glow-btn {
+  animation: pulseGlow 2.2s infinite alternate ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 6px 20px rgba(225, 29, 72, 0.35); }
+  100% { box-shadow: 0 10px 30px rgba(225, 29, 72, 0.6); }
+}
+
+.scroll-down-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.bounce-arrow {
+  animation: bounce 1.8s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ==========================================================================
+   SECTION 2: 3D CAKE & CANDLE
+   ========================================================================== */
+.cake-section {
+  background: rgba(255, 255, 255, 0.45);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.cake-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.cake {
+  position: relative;
+  width: 180px;
+  height: 140px;
+}
+
+.plate {
+  position: absolute;
+  bottom: -10px;
+  left: -20px;
+  width: 220px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  border-radius: 14px 14px 0 0;
+}
+
+.layer-bottom {
+  bottom: 0;
+  height: 50px;
+  background: linear-gradient(to right, #e85d75, #ff758c);
+}
+
+.layer-middle {
+  bottom: 45px;
+  left: 10px;
+  width: 160px;
+  height: 45px;
+  background: linear-gradient(to right, #ff8fa3, #ffb3c1);
+}
+
+.layer-top {
+  bottom: 85px;
+  left: 20px;
+  width: 140px;
+  height: 45px;
+  background: linear-gradient(to right, #ffb3c1, #ffe5ec);
+}
+
+.icing {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  width: 140px;
+  height: 15px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.drips {
+  position: absolute;
+  top: 22px;
+  left: 25px;
+  width: 130px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.drip {
+  width: 14px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 0 0 10px 10px;
+}
+
+.candle {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 45px;
+  background: repeating-linear-gradient(45deg, #ffb703, #ffb703 6px, #ffffff 6px, #ffffff 12px);
+  border-radius: 4px;
+  z-index: 5;
+}
+
+.flame-glow {
+  position: absolute;
+  top: -24px;
+  left: -14px;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(255, 183, 3, 0.8) 0%, rgba(255, 117, 140, 0) 70%);
+  border-radius: 50%;
+  animation: flameGlow 1.5s infinite alternate ease-in-out;
+}
+
+.flame {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 22px;
+  background: radial-gradient(ellipse at bottom, #ffffff 0%, #ffb703 50%, #ff4d6d 100%);
+  border-radius: 50% 50% 35% 35%;
+  box-shadow: 0 0 14px #ffb703;
+  animation: flameFlicker 0.15s infinite alternate ease-in-out;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.flame.blown-out {
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
+}
+
+.smoke {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: rgba(150, 150, 150, 0.6);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.smoke.active {
+  animation: smokeRise 1.8s ease-out forwards;
+}
+
+@keyframes flameGlow {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes flameFlicker {
+  0% { transform: translateX(-50%) rotate(-2deg) scale(1); }
+  100% { transform: translateX(-50%) rotate(2deg) scale(1.08); }
+}
+
+@keyframes smokeRise {
+  0% { opacity: 0.8; transform: translateX(-50%) translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-50px) scale(3); filter: blur(4px); }
+}
+
+.cake-actions {
+  text-align: center;
+}
+
+.status-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+/* ==========================================================================
+   SECTION 3: PHOTO GALLERY WITH CATEGORY TABS
+   ========================================================================== */
+.gallery-tabs-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto 28px auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+.gallery-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px;
+  border-radius: 30px;
+  border: 1px solid rgba(225, 29, 72, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  max-width: 100%;
+}
+
+.gallery-tab-btn {
+  border: none;
+  background: transparent;
+  padding: 9px 18px;
+  border-radius: 24px;
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all 0.22s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .gallery-tabs-wrapper {
+    padding: 0 8px;
+    margin-bottom: 22px;
+  }
+
+  .gallery-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .gallery-tab-btn {
+    width: 100%;
+    padding: 10px 8px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 18px;
+    gap: 5px;
+  }
+}
+
+.gallery-tab-btn:hover {
+  color: var(--rose-primary);
+  background: rgba(225, 29, 72, 0.08);
+}
+
+.gallery-tab-btn.active {
+  background: linear-gradient(135deg, var(--rose-primary), var(--rose-glow));
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
+}
+
+.photo-grid-wrapper {
+  width: 100%;
+  max-width: 1080px;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.photo-card {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 18px;
+  overflow: hidden;
+  background: white;
+  padding: 6px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(225, 29, 72, 0.25);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+.photo-overlay {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  right: 6px;
+  padding: 14px 12px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 65%, transparent 100%);
+  border-radius: 0 0 14px 14px;
+  color: white;
+}
+
+.photo-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+}
+
+.photo-caption {
+  font-size: 0.78rem;
+  opacity: 0.88;
+  display: block;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   SECTION 4: WISH CARDS STACK
+   ========================================================================== */
+.wish-deck-wrapper {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wish-deck {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  margin-bottom: 16px;
+}
+
+.wish-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 25px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.wish-card.active-card {
+  z-index: 10;
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.wish-card.prev-card {
+  z-index: 5;
+  opacity: 0;
+  transform: translateY(-20px) scale(0.9);
+}
+
+.wish-card.next-card {
+  z-index: 5;
+  opacity: 0.5;
+  transform: translateY(15px) scale(0.94);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.wish-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--rose-primary);
+  margin-bottom: 8px;
+}
+
+.wish-card p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.deck-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-round-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--text-dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.nav-round-btn:active {
+  transform: scale(0.92);
+}
+
+.counter-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   SECTION 5: GIFT BOX & GRAND SURPRISE CARD
+   ========================================================================== */
+.gift-box-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 20px auto 30px auto;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.gift-box-container:hover {
+  transform: scale(1.05);
+}
+
+.gift-body {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 110px;
+  background: linear-gradient(135deg, var(--rose-primary), var(--rose-glow));
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(225, 29, 72, 0.35);
+}
+
+.gift-body::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 100%;
+  background: var(--amber-gold);
+}
+
+.gift-lid {
+  position: absolute;
+  top: 25px;
+  left: -8px;
+  width: 166px;
+  height: 35px;
+  background: linear-gradient(135deg, var(--rose-glow), var(--rose-primary));
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.5s ease;
+  z-index: 5;
+}
+
+.gift-lid::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 100%;
+  background: var(--amber-gold);
+}
+
+.ribbon-bow {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 22px;
+  background: var(--amber-gold);
+  border-radius: 12px 12px 0 0;
+}
+
+.gift-box-container.opened .gift-lid {
+  transform: translateY(-60px) rotate(-15deg);
+  opacity: 0;
+}
+
+/* Grand Surprise Reveal Card (Heartfelt Wish Featured Here) */
+.gift-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(225, 29, 72, 0.25);
+  padding: 36px 26px;
+  border-radius: 28px;
+  text-align: center;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(225, 29, 72, 0.15);
+  animation: modalFadeIn 0.5s ease forwards;
+}
+
+.gift-card.hidden {
+  display: none;
+}
+
+.crown-icon {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+
+.surprise-tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--rose-primary);
+  margin-bottom: 8px;
+}
+
+.gift-card h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 4vw, 1.6rem);
+  color: var(--text-dark);
+  margin-bottom: 14px;
+}
+
+.surprise-wish-highlight {
+  background: linear-gradient(145deg, #ffffff 0%, #fff7f9 55%, #fdf2f4 100%);
+  border: 1.5px solid #fecdd3;
+  border-radius: 24px;
+  padding: 26px 22px 22px 22px;
+  margin: 18px auto 22px auto;
+  box-shadow: 0 14px 36px rgba(225, 29, 72, 0.08), 0 2px 10px rgba(0, 0, 0, 0.02);
+  text-align: center;
+  position: relative;
+  max-width: 480px;
+}
+
+.quote-mark-badge {
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  line-height: 0.75;
+  color: #f43f5e;
+  margin: 0 auto 10px auto;
+  user-select: none;
+  filter: drop-shadow(0 2px 8px rgba(244, 63, 94, 0.28));
+}
+
+.surprise-wish-highlight .wish-quote {
+  font-family: var(--font-romantic);
+  font-size: clamp(1.22rem, 3.8vw, 1.45rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.76;
+  letter-spacing: 0.015em;
+  color: #4a1023;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+}
+
+.wish-subtext {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(244, 63, 94, 0.22);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #9f1239;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.surprise-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.surprise-action-buttons .btn-action {
+  width: 100%;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  padding: 34px 20px 96px 20px;
+  text-align: center;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ==========================================================================
+   MODALS
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(18, 16, 18, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  background: #fdfaf7;
+  border-radius: 26px;
+  padding: 32px 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: modalFadeIn 0.35s ease;
+}
+
+@keyframes modalFadeIn {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+  z-index: 10;
+}
+
+.modal-heart-icon {
+  font-size: 2.5rem;
+  color: var(--rose-primary);
+  margin-bottom: 8px;
+}
+
+.modal-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--text-dark);
+}
+
+.modal-body {
+  margin: 16px 0 22px 0;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 0 10px;
+}
+
+.handwritten-letter-text {
+  font-family: var(--font-handwritten);
+  font-size: 1.45rem;
+  line-height: 1.65;
+  color: #332e2a;
+  white-space: pre-line;
+}
+
+/* Teaser inside first secret letter */
+.second-letter-teaser {
+  margin-top: 24px;
+  padding: 20px 16px 8px 16px;
+  border-top: 1.5px dashed rgba(225, 29, 72, 0.28);
+  text-align: center;
+  background: rgba(254, 242, 244, 0.5);
+  border-radius: 18px;
+}
+
+.teaser-divider {
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+  animation: heartPulse 1.8s infinite ease-in-out;
+}
+
+.teaser-hint {
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  color: #881337;
+  font-weight: 600;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   HEART LETTER MODAL (DEEP LETTER FROM BOTTOM OF HEART)
+   ========================================================================== */
+.heart-letter-card {
+  position: relative;
+  width: 95%;
+  max-width: 620px;
+  max-height: 88vh;
+  background: linear-gradient(180deg, #ffffff 0%, #fffbfb 60%, #fff5f7 100%);
+  border-radius: 28px;
+  padding: 28px 24px 20px 24px;
+  box-shadow: 0 30px 80px rgba(225, 29, 72, 0.25), 0 10px 30px rgba(0, 0, 0, 0.18);
+  border: 1.5px solid rgba(225, 29, 72, 0.25);
+  display: flex;
+  flex-direction: column;
+  animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.heart-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  background: rgba(225, 29, 72, 0.1);
+  border: 1px solid rgba(225, 29, 72, 0.3);
+  border-radius: 20px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--rose-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  margin-bottom: 8px;
+}
+
+.heart-modal-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.22rem, 3.8vw, 1.5rem);
+  color: #2b0f16;
+  margin-bottom: 4px;
+}
+
+.heart-modal-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: #9f1239;
+  font-weight: 500;
+}
+
+.heart-letter-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 12px 18px 6px;
+  margin: 14px 0 10px 0;
+  text-align: left;
+  max-height: 56vh;
+  scrollbar-width: thin;
+  scrollbar-color: #fca5a5 #fff1f2;
+}
+
+.heart-letter-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.heart-letter-body::-webkit-scrollbar-thumb {
+  background: #f87171;
+  border-radius: 10px;
+}
+
+.heart-letter-para {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 2.5vw, 1.04rem);
+  line-height: 1.82;
+  color: #3b2c31;
+  margin-bottom: 18px;
+  letter-spacing: 0.01em;
+}
+
+.heart-letter-para:last-child {
+  margin-bottom: 6px;
+}
+
+.heart-lead-para {
+  font-family: var(--font-romantic);
+  font-size: clamp(1.28rem, 3.6vw, 1.48rem);
+  font-weight: 600;
+  color: #881337;
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.letter-dua-box {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 45%, #ffe4e6 100%);
+  border: 1.5px solid #fcd34d;
+  border-radius: 20px;
+  padding: 22px 20px;
+  margin: 22px 0;
+  box-shadow: 0 10px 28px rgba(245, 158, 11, 0.12), 0 2px 8px rgba(225, 29, 72, 0.06);
+  position: relative;
+}
+
+.dua-badge-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #b45309;
+  margin-bottom: 10px;
+}
+
+.dua-content-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.15rem, 3.2vw, 1.32rem);
+  line-height: 1.78;
+  color: #451a03;
+  font-style: italic;
+  font-weight: 500;
+  margin: 0;
+}
+
+.heart-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(225, 29, 72, 0.14);
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   VIDEO SURPRISE MODAL (PLAYS BEFORE FINAL SURPRISE REVEAL)
+   ========================================================================== */
+.video-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: #141216;
+  border-radius: 26px;
+  padding: 24px 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: modalFadeIn 0.35s ease;
+}
+
+.video-modal-card .modal-close {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.video-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  background: rgba(225, 29, 72, 0.25);
+  border: 1px solid rgba(225, 29, 72, 0.5);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ff758f;
+  margin-bottom: 8px;
+}
+
+.video-modal-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+
+.video-player-container {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  margin-bottom: 16px;
+  position: relative;
+  max-height: 56vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#surprise-video-element {
+  width: 100%;
+  max-height: 54vh;
+  object-fit: contain;
+  display: block;
+  border-radius: 18px;
+}
+
+.video-hint-text {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+/* Lightbox Modal */
+.lightbox-content {
+  position: relative;
+  width: 95%;
+  max-width: 480px;
+  max-height: 90vh;
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  animation: modalFadeIn 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.lightbox-content .modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 42px;
+  height: 42px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 120;
+  transition: all 0.2s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.lightbox-content .modal-close:hover {
+  background: var(--rose-primary);
+  border-color: #ffffff;
+  transform: scale(1.1);
+}
+
+.lightbox-img-wrapper {
+  width: 100%;
+  max-height: 70vh;
+  overflow: hidden;
+  background: #0f0d11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-img-wrapper img {
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.lightbox-caption-box {
+  padding: 16px 20px;
+  text-align: center;
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.lightbox-caption-box h4 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--rose-primary);
+  margin-bottom: 4px;
+}
+
+.lightbox-caption-box p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   FLOATING SYNCHRONIZED LYRICS
+   ========================================================================== */
+.lyrics-float-container {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: min(92vw, 560px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+  user-select: none;
+}
+
+.lyrics-float-container:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.lyrics-song-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 22px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1.5px solid rgba(225, 29, 72, 0.3);
+  border-radius: 35px;
+  box-shadow: 0 8px 24px rgba(225, 29, 72, 0.18), 0 2px 8px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: all 0.25s ease;
+  max-width: 100%;
+}
+
+.song-title-text {
+  font-size: clamp(0.85rem, 2.6vw, 0.98rem);
+  font-weight: 700;
+  color: #e11d48;
+  letter-spacing: 0.3px;
+  font-family: var(--font-body);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 78vw;
+}
+
+.lyric-text-fade {
+  animation: lyricTextIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes lyricTextIn {
+  0% { opacity: 0.4; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.music-wave-mini {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+  width: 14px;
+}
+
+.music-wave-mini span {
+  width: 2.5px;
+  height: 100%;
+  background: #e11d48;
+  border-radius: 2px;
+  transform-origin: bottom;
+  animation: miniWave 1.1s ease-in-out infinite alternate;
+}
+
+.music-wave-mini span:nth-child(1) { height: 50%; animation-delay: 0.1s; }
+.music-wave-mini span:nth-child(2) { height: 100%; animation-delay: 0.3s; }
+.music-wave-mini span:nth-child(3) { height: 70%; animation-delay: 0.2s; }
+
+.music-wave-mini.paused span {
+  animation-play-state: paused;
+  height: 3px !important;
+}
+
+@keyframes miniWave {
+  0% { transform: scaleY(0.2); }
+  100% { transform: scaleY(1); }
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 35px 16px 40px 16px;
+    min-height: 100vh;
+  }
+  
+  .hero-content-center {
+    padding: 30px 18px;
+    border-radius: 24px;
+    margin: 0;
+  }
+
+  .main-title {
+    font-size: 2.35rem;
+  }
+
+  .highlight-name {
+    font-size: 3.1rem;
+  }
+
+  .heart-icon {
+    font-size: 2.1rem;
+  }
+
+  .hero-desc {
+    font-size: 0.88rem;
+    margin: 12px 0 20px 0;
+  }
+
+  .rail-photo-card {
+    width: 66px;
+    height: 88px;
+    padding: 3px;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+  }
+
+  .page-section {
+    padding: 48px 14px;
+  }
+
+  .section-header {
+    margin-bottom: 22px;
+  }
+
+  .gallery-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .gallery-tab-btn {
+    width: 100%;
+    padding: 10px 8px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 18px;
+    gap: 5px;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .gift-card {
+    padding: 28px 18px;
+    border-radius: 22px;
+  }
+
+  .surprise-wish-highlight {
+    padding: 18px 14px;
+    margin: 14px 0 18px 0;
+  }
+
+  .surprise-wish-highlight .wish-quote {
+    font-size: 0.96rem;
+  }
+
+  .video-modal-card {
+    padding: 20px 16px;
+    border-radius: 22px;
+    width: 95%;
+  }
+
+  .video-modal-header h3 {
+    font-size: 1.15rem;
+  }
+
+  .lyrics-float-container {
+    bottom: 14px;
+    max-width: 96vw;
+  }
+
+  .lyric-pill {
+    font-size: 0.92rem;
+    padding: 7px 16px;
+  }
+
+  .song-title-text {
+    font-size: 0.72rem;
+  }
+
+  .site-footer {
+    padding: 30px 16px 110px 16px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-content-center {
+    padding: 24px 14px;
+  }
+
+  .main-title {
+    font-size: 2.05rem;
+  }
+
+  .highlight-name {
+    font-size: 2.75rem;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .photo-card {
+    padding: 4px;
+    border-radius: 14px;
+  }
+
+  .photo-overlay {
+    padding: 10px 8px;
+  }
+
+  .photo-title {
+    font-size: 0.8rem;
+  }
+
+  .photo-caption {
+    font-size: 0.7rem;
+  }
+
+  .rail-photo-card {
+    width: 58px;
+    height: 78px;
+    padding: 3px;
+    border-radius: 9px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.13);
+  }
+}
+
+</style>
+  
 </head>
 
 <body>
@@ -341,9 +1952,1367 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
   <!-- Lyrics Data -->
-  <script src="script/lyricsData.js"></script>
+  
   <!-- Main Logic -->
-  <script src="script/main.js?v=20260908_2"></script>
+  <script id="embedded-lyrics-data">
+// Auto-generated synchronized lyrics for "Deeper Than It Seems" - Jace June
+const songLyricsData = [
+  {
+    "id": 0,
+    "time": 10.32,
+    "text": "I said, you're one and only",
+    "theme": "pink"
+  },
+  {
+    "id": 1,
+    "time": 12.78,
+    "text": "You said, you're perfect for me",
+    "theme": "white"
+  },
+  {
+    "id": 2,
+    "time": 15.38,
+    "text": "Would you like anything to drink?",
+    "theme": "pink"
+  },
+  {
+    "id": 3,
+    "time": 18.4,
+    "text": "Well that's nice of you",
+    "theme": "white"
+  },
+  {
+    "id": 4,
+    "time": 20.5,
+    "text": "I said, I'm insecure, but",
+    "theme": "pink"
+  },
+  {
+    "id": 5,
+    "time": 23.06,
+    "text": "I'll take a glass of water",
+    "theme": "white"
+  },
+  {
+    "id": 6,
+    "time": 25.63,
+    "text": "And you gave me the seven seas",
+    "theme": "pink"
+  },
+  {
+    "id": 7,
+    "time": 30.36,
+    "text": "And baby we have a ways to go",
+    "theme": "white"
+  },
+  {
+    "id": 8,
+    "time": 35.12,
+    "text": "But water makes for waterfalls, which tend to overflow",
+    "theme": "pink"
+  },
+  {
+    "id": 9,
+    "time": 40.45,
+    "text": "And baby you give me strength and hope",
+    "theme": "white"
+  },
+  {
+    "id": 10,
+    "time": 45.45,
+    "text": "And you just need to know",
+    "theme": "pink"
+  },
+  {
+    "id": 11,
+    "time": 49.68,
+    "text": "I love you",
+    "theme": "white"
+  },
+  {
+    "id": 12,
+    "time": 51.17,
+    "text": "All alone in an ocean",
+    "theme": "pink"
+  },
+  {
+    "id": 13,
+    "time": 53.56,
+    "text": "Feel my soul, pure devotion",
+    "theme": "white"
+  },
+  {
+    "id": 14,
+    "time": 56.17,
+    "text": "Darlin' you're the only one that takes my breath away",
+    "theme": "pink"
+  },
+  {
+    "id": 15,
+    "time": 61.36,
+    "text": "All these waves pull me under",
+    "theme": "white"
+  },
+  {
+    "id": 16,
+    "time": 63.72,
+    "text": "And just like rain before the thunder",
+    "theme": "pink"
+  },
+  {
+    "id": 17,
+    "time": 66.21,
+    "text": "Love can get much deeper than it seems",
+    "theme": "white"
+  },
+  {
+    "id": 18,
+    "time": 69.75,
+    "text": "Much deeper than it",
+    "theme": "pink"
+  },
+  {
+    "id": 19,
+    "time": 71.55,
+    "text": "You said, I know we're getting close",
+    "theme": "white"
+  },
+  {
+    "id": 20,
+    "time": 73.99,
+    "text": "But I think we should take it slow",
+    "theme": "pink"
+  },
+  {
+    "id": 21,
+    "time": 76.85,
+    "text": "I said, I'm here for you no matter what we do",
+    "theme": "white"
+  },
+  {
+    "id": 22,
+    "time": 81.79,
+    "text": "Now you're the tune of everything",
+    "theme": "pink"
+  },
+  {
+    "id": 23,
+    "time": 84.32,
+    "text": "We put our love in candy rings",
+    "theme": "white"
+  },
+  {
+    "id": 24,
+    "time": 87.08,
+    "text": "And all our seas have turned from grey to baby blue",
+    "theme": "pink"
+  },
+  {
+    "id": 25,
+    "time": 92.53,
+    "text": "But love gets deeper",
+    "theme": "white"
+  },
+  {
+    "id": 26,
+    "time": 93.78,
+    "text": "And candy sweeter",
+    "theme": "pink"
+  },
+  {
+    "id": 27,
+    "time": 95.25,
+    "text": "Hear the echoes of love believers",
+    "theme": "white"
+  },
+  {
+    "id": 28,
+    "time": 98.13,
+    "text": "And this whole boat could sink tonight, but I'll go",
+    "theme": "pink"
+  },
+  {
+    "id": 29,
+    "time": 102.37,
+    "text": "With all your wishes",
+    "theme": "white"
+  },
+  {
+    "id": 30,
+    "time": 104.07,
+    "text": "And all my kisses",
+    "theme": "pink"
+  },
+  {
+    "id": 31,
+    "time": 105.55,
+    "text": "All our troubles are nonexistent",
+    "theme": "white"
+  },
+  {
+    "id": 32,
+    "time": 108.46,
+    "text": "We never thought that we'd be here, but I know",
+    "theme": "pink"
+  },
+  {
+    "id": 33,
+    "time": 112.36,
+    "text": "Baby we have a ways to go",
+    "theme": "white"
+  },
+  {
+    "id": 34,
+    "time": 117.05,
+    "text": "But water makes for waterfalls, which tend to overflow",
+    "theme": "pink"
+  },
+  {
+    "id": 35,
+    "time": 122.26,
+    "text": "And baby you give me strength and hope",
+    "theme": "white"
+  },
+  {
+    "id": 36,
+    "time": 127.22,
+    "text": "And you just need to know",
+    "theme": "pink"
+  },
+  {
+    "id": 37,
+    "time": 131.29,
+    "text": "I love you",
+    "theme": "white"
+  },
+  {
+    "id": 38,
+    "time": 132.73,
+    "text": "All alone in an ocean",
+    "theme": "pink"
+  },
+  {
+    "id": 39,
+    "time": 135.15,
+    "text": "Feel my soul, pure devotion",
+    "theme": "white"
+  },
+  {
+    "id": 40,
+    "time": 137.84,
+    "text": "Darlin' you're the only one that takes my breath away",
+    "theme": "pink"
+  },
+  {
+    "id": 41,
+    "time": 142.88,
+    "text": "All these waves pull me under",
+    "theme": "white"
+  },
+  {
+    "id": 42,
+    "time": 145.43,
+    "text": "And just like rain before the thunder",
+    "theme": "pink"
+  },
+  {
+    "id": 43,
+    "time": 147.82,
+    "text": "Love can get much deeper than it seems",
+    "theme": "white"
+  },
+  {
+    "id": 44,
+    "time": 151.45,
+    "text": "Much deeper than it seems",
+    "theme": "pink"
+  },
+  {
+    "id": 45,
+    "time": 154.8,
+    "text": "Oh woah, oh woah",
+    "theme": "white"
+  },
+  {
+    "id": 46,
+    "time": 160.78,
+    "text": "Love can get much deeper than it seems",
+    "theme": "pink"
+  },
+  {
+    "id": 47,
+    "time": 164.97,
+    "text": "Oh woah, oh woah",
+    "theme": "white"
+  },
+  {
+    "id": 48,
+    "time": 171.02,
+    "text": "Love can get much deeper than it",
+    "theme": "pink"
+  }
+];
+
+</script>
+<script id="embedded-main-logic">
+/* ==========================================================================
+   FARHEEN'S MOBILE-FRIENDLY SCROLLABLE BIRTHDAY APPLICATION LOGIC
+   ========================================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const defaultAppData = {
+    name: "Farheen",
+    title: "Happy Birthday",
+    subtitle: "Farheen ❤️",
+    mainWish: "You are in my heart, you shall be in there forever. My greatest wish is that you are happy when you think of me, as I am when I think of you.",
+    heroText: "May your day be filled with love, laughter, and all the happiness your heart can hold. May this year bring you endless joy and unforgettable moments.",
+    videoUrl: "img/video_surprise.mp4",
+    photos: [
+      {
+        url: "img/IMG_20260722_022403.jpg.jpeg",
+        title: "Radiant Beauty ✨",
+        caption: "Your smile brings light into every corner of the world.",
+        category: "her"
+      },
+      {
+        url: "img/InShot_20260702_020455809.jpg.jpeg",
+        title: "Moments Together 💕",
+        caption: "Every second spent together is a memory treasured forever.",
+        category: "together"
+      },
+      {
+        url: "img/Screenshot_20260827_212144.jpg.jpeg",
+        title: "Our Video Calls 📱",
+        caption: "Always smiling together and staying close to my heart.",
+        category: "videocall"
+      },
+      {
+        url: "img/IMG_20260722_022429.jpg.jpeg",
+        title: "Pure Grace 🌸",
+        caption: "Effortlessly elegant and wonderfully unique.",
+        category: "her"
+      },
+      {
+        url: "img/InShot_20260702_020539702.jpg.jpeg",
+        title: "Sweetest Bonding 💫",
+        caption: "Laughter, warmth, and our favorite stories.",
+        category: "together"
+      },
+      {
+        url: "img/Screenshot_20260820_205307.jpg.jpeg",
+        title: "Heart-to-Heart Calls 💌",
+        caption: "Those candid moments on screen that brighten up any day.",
+        category: "videocall"
+      },
+      {
+        url: "img/IMG_20260722_022515.jpg.jpeg",
+        title: "Queen of the Day 👑",
+        caption: "Farheen, shining brighter than any star.",
+        category: "her"
+      },
+      {
+        url: "img/InShot_20260702_020604009.jpg.jpeg",
+        title: "Cherished Memories 🌹",
+        caption: "Two hearts wrapped in endless comfort and joy.",
+        category: "together"
+      },
+      {
+        url: "img/Screenshot_20260820_205318.jpg.jpeg",
+        title: "Evening Calls 🌙",
+        caption: "Hours feel like minutes when we talk together.",
+        category: "videocall"
+      },
+      {
+        url: "img/IMG_20260722_022550.jpg.jpeg",
+        title: "Enchanting Look ✨",
+        caption: "A snapshot of pure magic and innocence.",
+        category: "her"
+      },
+      {
+        url: "img/InShot_20260702_020623122.jpg.jpeg",
+        title: "Forever Connected 💖",
+        caption: "Our favorite smiles and timeless happiness.",
+        category: "together"
+      },
+      {
+        url: "img/Screenshot_20260827_212148.jpg.jpeg",
+        title: "Screens & Smiles 📱",
+        caption: "Seeing your face always makes everything better.",
+        category: "videocall"
+      },
+      {
+        url: "img/IMG_20260722_022624.jpg.jpeg",
+        title: "Golden Hour Glow ☀️",
+        caption: "Warmth, beauty, and that unforgettable twinkle.",
+        category: "her"
+      },
+      {
+        url: "img/InShot_20260702_020813374.jpg.jpeg",
+        title: "Unbreakable Bond 🥰",
+        caption: "Together through all walks of life.",
+        category: "together"
+      },
+      {
+        url: "img/Screenshot_20260827_213319.jpg.jpeg",
+        title: "Laughing on Call 🌟",
+        caption: "The cute laughs and goofy faces we make.",
+        category: "videocall"
+      },
+      {
+        url: "img/IMG_20260722_022652.jpg.jpeg",
+        title: "Elegance Personified 🌺",
+        caption: "Simply breathtaking in every single way.",
+        category: "her"
+      },
+      {
+        url: "img/InShot_20260702_021010147.jpg.jpeg",
+        title: "Happy Beats Together 🎶",
+        caption: "Moments where everything feels just right.",
+        category: "together"
+      },
+      {
+        url: "img/Screenshot_20260827_214430.jpg.jpeg",
+        title: "Virtual Hugs 🤗",
+        caption: "Warm smiles and happiness on every call.",
+        category: "videocall"
+      },
+      {
+        url: "img/IMG_20260720_150830.jpg.jpeg",
+        title: "Stunning Farheen 💖",
+        caption: "Capturing the grace and charm you carry naturally.",
+        category: "her"
+      },
+      {
+        url: "img/InShot_20260702_021145958.jpg.jpeg",
+        title: "Sweet Companionship 🌷",
+        caption: "Shared memories that become lifelong treasures.",
+        category: "together"
+      },
+      {
+        url: "img/Screenshot_20260827_215558.jpg.jpeg",
+        title: "Comfort Calls ☕",
+        caption: "Sharing our day, laughs, and quiet moments.",
+        category: "videocall"
+      },
+      {
+        url: "img/IMG-20260710-WA0009.jpg.jpeg",
+        title: "Pretty Smiles 🌼",
+        caption: "Always glowing, always inspiring.",
+        category: "her"
+      },
+      {
+        url: "img/InShot_20260702_021220614.jpg.jpeg",
+        title: "Always Beside You ❤️",
+        caption: "Through every chapter and every celebration.",
+        category: "together"
+      },
+      {
+        url: "img/Screenshot_20260827_221014.jpg.jpeg",
+        title: "Goodnight Calls 🌠",
+        caption: "Ending the day with your smile on screen.",
+        category: "videocall"
+      },
+      {
+        url: "img/IMG-20260710-WA0016.jpg.jpeg",
+        title: "Picture Perfect 📸",
+        caption: "A moment frozen in time, glowing with happiness.",
+        category: "her"
+      },
+      {
+        url: "img/IMG-20260710-WA0019.jpg.jpeg",
+        title: "Pure Charm ✨",
+        caption: "Farheen, you make the world a prettier place.",
+        category: "her"
+      },
+      {
+        url: "img/Screenshot_20260820_201432.jpg.jpeg",
+        title: "Sweet Conversations 💬",
+        caption: "Memories captured during our sweetest talks.",
+        category: "videocall"
+      },
+      {
+        url: "img/IMG-20260710-WA0024.jpg.jpeg",
+        title: "Sparkle of Life 🌟",
+        caption: "Your positive energy is truly infectious.",
+        category: "her"
+      },
+      {
+        url: "img/Screenshot_20260820_205447.jpg.jpeg",
+        title: "Special Screen Time 📱",
+        caption: "Unfiltered joy and real emotions.",
+        category: "videocall"
+      },
+      {
+        url: "img/IMG-20260710-WA0027.jpg.jpeg",
+        title: "Gentle Spirit 🕊️",
+        caption: "A soul as kind as it is radiant.",
+        category: "her"
+      },
+      {
+        url: "img/Screenshot_20260820_205451.jpg.jpeg",
+        title: "Constant Smiles 😊",
+        caption: "Every call reminds me of how special you are.",
+        category: "videocall"
+      },
+      {
+        url: "img/IMG-20260710-WA0033.jpg.jpeg",
+        title: "Joyful Gaze 💫",
+        caption: "Eyes full of wonder, dreams, and light.",
+        category: "her"
+      },
+      {
+        url: "img/Screenshot_20260827_153637.jpg.jpeg",
+        title: "Daytime Check-ins ☀️",
+        caption: "Taking a break just to say hello and see you smile.",
+        category: "videocall"
+      },
+      {
+        url: "img/IMG-20260710-WA0037.jpg.jpeg",
+        title: "Birthday Queen 🎂",
+        caption: "Celebrating today and every day ahead!",
+        category: "her"
+      },
+      {
+        url: "img/img1.jpeg",
+        title: "Special Portrait 🎀",
+        caption: "Unforgettable moments of grace and beauty.",
+        category: "her"
+      },
+      {
+        url: "img/img2.jpeg",
+        title: "Lovely Memories 💝",
+        caption: "Forever etched in memory and heart.",
+        category: "her"
+      }
+    ],
+    letterTitle: "Farheen's Secret Surprise 💌",
+    letterBody: "Dearest Farheen,\n\nYou are in my heart, you shall be in there forever. My greatest wish is that you are happy when you think of me, as I am when I think of you.\n\nOn this special day, I wish you all the laughter, peace, and warmth in the universe. Never stop being the beautiful, radiant soul that you are.\n\nHappy Birthday! ❤️",
+    heartLetterTitle: "❤️ A little something from the bottom of my heart…",
+    heartLetterSubtitle: "For Farheen Shaikh 🌸",
+    heartLetterBody: "Happy Birthday, My Cutiee Farheen🎂❤️\n\nI don’t know if this is the right time to say all this or not, but I just want to express something that has been in my heart for a long time. I don’t want to make your birthday too emotional, but I feel like today is a good opportunity to tell you how much your presence actually means to me.\n\nThere was a time when I lost you, and honestly, even back then, I loved you so much, truly and deeply from my heart. ❤️ Maybe I didn’t know how to express it properly, and maybe I wasn’t mature enough to understand how much you truly meant to me. I made so many mistakes, and I know that some of my actions hurt you. For all of that, I’m genuinely sorry. I wish I could go back and do things differently, but I can’t change the past. All I can do now is learn from my mistakes and be grateful that I got the chance to have you in my life again.\n\nFrom the day we became friends in February 2020 until today, you have always been my comfort zone. No matter how much time passed or how many things happened between us, there has always been something about you that makes me feel like I can simply be myself. ❤️\n\nThank you for coming back into my life, even if it’s as a good friend for now. Having you here again genuinely makes my life happier. You are that one person with whom I can share almost everything and talk about literally anything without overthinking.\n\nWith you, I can be childish, silly, annoying, emotional, or just say whatever is on my mind without constantly worrying about being judged. I don’t have to pretend to be someone I’m not. You are my safe place, my comfort zone, and someone with whom I can truly be myself. 🥹❤️\n\nAnd there’s something I’ve realized about myself too. Even though we aren’t together, whenever I look at another girl, somewhere inside me it feels like I’m being unfaithful to you. I know we aren’t in a relationship right now, and I’m not saying this to put any pressure on you. It’s simply how deeply my heart has always been attached to you. Somehow, a part of me still feels like it belongs to you. ❤️\n\nThank you for being such a good friend even after I hurt you. Thank you for giving me another chance to have you in my life. You came back as a friend, but your presence filled a part of my life that I didn’t even realize was missing.\n\nAnd I want you to know something else…\n\nI promise I’ll try my best to become the person you want me to be and the person your family would be proud to have in your life. InshaAllah, I’ll become that person soon. I know I still have a lot to improve, and I know promises alone don’t mean much. I want to prove it through my actions, my efforts, and the way I treat you. I don’t want to repeat the mistakes I made before or give you another reason to feel hurt. I just want to become someone you can trust, respect, and feel proud of having in your life. ❤️\n\nMaybe some people come into our lives and leave a mark that time can never erase. And maybe some bonds, no matter how complicated they become, somehow find their way back to each other. I’m genuinely grateful that you found your way back to me.\n\nAnd honestly, my cutiee, your smile is still one of my favourite things about you. 🥹❤️ There is something truly special about it—it can change the entire mood in just a moment. And your hair… MashaAllah, they add such a beautiful charm to you. Sometimes your smile and your hair together make you look so effortlessly adorable that I genuinely don’t know what to say. 🫶🏻\n\nJust keep smiling like this, because protecting that beautiful smile of yours might just be my favourite thing to do.\n\nHappy Birthday, my smile keeper, my cutiee Farheen. 💕\n\nBas aaj ek dil se dua hai… Allah aapko woh sab kuch ata kare jo aapke dil ke liye behtareen ho. Aapki zindagi mein kabhi kisi cheez ki kami na ho jo aapko khushi de. Jo bhi raaste aapke liye likhe gaye hain, woh hamesha khoobsurat manzilon tak le jaayein. Aur jab bhi zindagi mushkil lage, Allah aapko itni himmat de ke aap har mushkil ko muskura kar paar kar sakein. Aapki muskurahat hamesha yunhi roshan rahe, kyunki woh mere liye bhi bohot khaas hai. Ameen. 🤲🏻❤️🌙\n\nThank you for being here, Farheen. Thank you for being my comfort zone since February 2020, my smile keeper, and my missing part. ❤️\n\nAnd once again, I’m truly sorry for everything I did wrong. I can’t change the past, but I can make sure I learn from it. I just hope that from now on, I can give you more reasons to smile than reasons to be hurt.\n\nHappy Birthday once again, my cutiee, my smile keeper, my comfort zone, and my missing part. ❤️🎂🫶🏻"
+  };
+
+  let appData = defaultAppData;
+  let currentWishIndex = 0;
+  let activeGalleryCategory = "all";
+  let isAudioPlaying = false;
+  let audioCtx = null;
+  let candleBlown = false;
+  let railPaused = false;
+  let globalDistance = 0;
+  const speed = 0.85;
+
+  // DOM Elements
+  const canvas = document.getElementById("sparkle-canvas");
+  const ctx = canvas.getContext("2d");
+  const bgAudioElement = document.getElementById("bg-audio-element");
+  if (!bgAudioElement.getAttribute("src")) {
+    bgAudioElement.src = "deeperthanitseems.mp3";
+  }
+  const musicToggleBtn = document.getElementById("music-toggle-btn");
+  const musicStatusText = document.getElementById("music-status-text");
+
+  // Synchronized Lyrics Badge Elements
+  const lyricsFloatContainer = document.getElementById("lyrics-float-container");
+  const lyricsBadgeText = document.getElementById("lyrics-badge-text");
+  const musicWaveIcon = document.getElementById("music-wave-icon");
+
+  const specialWishText = document.getElementById("special-wish-text");
+  const heroDescText = document.getElementById("hero-desc-text");
+  
+  // Surprise Modals (First Secret Letter)
+  const surpriseModal = document.getElementById("surprise-modal");
+  const closeSurpriseBtn = document.getElementById("close-surprise-btn");
+  const sealSurpriseBtn = document.getElementById("seal-surprise-btn");
+  const modalLetterTitle = document.getElementById("modal-letter-title");
+  const modalLetterContent = document.getElementById("modal-letter-content");
+  const openSurpriseBtn = document.getElementById("open-surprise-btn");
+
+  // Deep Heart Letter Elements (From the Bottom of My Heart)
+  const heartLetterModal = document.getElementById("heart-letter-modal");
+  const openHeartLetterBtn = document.getElementById("open-heart-letter-btn");
+  const openHeartLetterDirectBtn = document.getElementById("open-heart-letter-direct-btn");
+  const closeHeartLetterBtn = document.getElementById("close-heart-letter-btn");
+  const sealHeartLetterBtn = document.getElementById("seal-heart-letter-btn");
+  const backToFirstLetterBtn = document.getElementById("back-to-first-letter-btn");
+  const heartLetterContainer = document.getElementById("heart-letter-container");
+  const heartLetterMainTitle = document.getElementById("heart-letter-main-title");
+
+  // Pre-Surprise Video Elements
+  const videoSurpriseModal = document.getElementById("video-surprise-modal");
+  const surpriseVideoElement = document.getElementById("surprise-video-element");
+  const closeVideoBtn = document.getElementById("close-video-btn");
+  const continueToWishBtn = document.getElementById("continue-to-wish-btn");
+  const replayVideoBtn = document.getElementById("replay-video-btn");
+
+  // Cake Elements
+  const blowCandleBtn = document.getElementById("blow-candle-btn");
+  const candleFlame = document.getElementById("candle-flame");
+  const candleGlow = document.getElementById("candle-glow");
+  const candleSmoke = document.getElementById("candle-smoke");
+  const blowStatusHint = document.getElementById("blow-status-hint");
+
+  // Gallery Elements
+  const photoGridContainer = document.getElementById("photo-grid-container");
+  const galleryFilterTabs = document.getElementById("gallery-filter-tabs");
+  const lightboxModal = document.getElementById("lightbox-modal");
+  const closeLightboxBtn = document.getElementById("close-lightbox-btn");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const lightboxTitle = document.getElementById("lightbox-title");
+  const lightboxCaption = document.getElementById("lightbox-caption");
+
+  // Wish Deck Elements
+  const wishDeckContainer = document.getElementById("wish-deck-container");
+  const prevWishBtn = document.getElementById("prev-wish-btn");
+  const nextWishBtn = document.getElementById("next-wish-btn");
+  const wishCounter = document.getElementById("wish-counter");
+
+  // Gift Elements
+  const giftBox = document.getElementById("gift-box");
+  const giftRevealCard = document.getElementById("gift-reveal-card");
+  const replayBtn = document.getElementById("replay-btn");
+
+  const photoPath = document.getElementById("photo-motion-path");
+  const railStage = document.getElementById("photo-rail-stage");
+
+  /* --------------------------------------------------------------------------
+     1. AMBIENT SPARKLES & FLOATING HEARTS CANVAS
+     -------------------------------------------------------------------------- */
+  let particles = [];
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 3 + 1;
+      this.speedY = Math.random() * 0.6 + 0.2;
+      this.speedX = (Math.random() - 0.5) * 0.4;
+      this.opacity = Math.random() * 0.6 + 0.3;
+      this.isHeart = Math.random() > 0.65;
+    }
+    update() {
+      this.y -= this.speedY;
+      this.x += this.speedX;
+      if (this.y < -10) this.reset();
+    }
+    draw() {
+      ctx.save();
+      ctx.globalAlpha = this.opacity;
+      if (this.isHeart) {
+        ctx.fillStyle = "#e11d48";
+        ctx.font = `${this.size * 3 + 8}px serif`;
+        ctx.fillText("❤️", this.x, this.y);
+      } else {
+        ctx.fillStyle = "#fb7185";
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+  }
+
+  for (let i = 0; i < 30; i++) {
+    particles.push(new Particle());
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+
+  /* --------------------------------------------------------------------------
+     2. 3D BACKGROUND MOVING PHOTO RAIL ENGINE (BEHIND HERO)
+     -------------------------------------------------------------------------- */
+  let cardElements = [];
+
+  function initPhotoRail() {
+    if (!railStage) return;
+    railStage.innerHTML = "";
+    cardElements = [];
+
+    if (!photoPath || !appData || !appData.photos || !appData.photos.length) return;
+
+    // Distribute cards with elegant spacing so they form a beautiful, uncrowded half-circle arch
+    const isSmallMobile = window.innerWidth <= 440;
+    const isTablet = window.innerWidth <= 768;
+    const totalCards = isSmallMobile ? 8 : (isTablet ? 10 : 15);
+    const photoList = appData.photos;
+
+    for (let i = 0; i < totalCards; i++) {
+      const photoItem = photoList[i % photoList.length];
+      const card = document.createElement("div");
+      card.className = "rail-photo-card";
+      card.innerHTML = `<img src="${photoItem.url}" alt="${photoItem.title}" loading="lazy">`;
+      
+      card.addEventListener("click", (e) => {
+        e.stopPropagation();
+        lightboxImg.src = photoItem.url;
+        lightboxTitle.innerText = photoItem.title;
+        lightboxCaption.innerText = photoItem.caption;
+        lightboxModal.classList.remove("hidden");
+      });
+
+      railStage.appendChild(card);
+      cardElements.push({
+        element: card,
+        photoData: photoItem
+      });
+    }
+  }
+
+  let isRailLoopRunning = false;
+
+  function startRailAnimation() {
+    if (isRailLoopRunning) return;
+    isRailLoopRunning = true;
+
+    function step() {
+      if (photoPath && cardElements.length > 0 && railStage) {
+        let pathLen = 0;
+        try {
+          pathLen = photoPath.getTotalLength();
+        } catch (err) {
+          pathLen = 0;
+        }
+
+        if (pathLen && !isNaN(pathLen) && pathLen > 50) {
+          const stageRect = railStage.getBoundingClientRect();
+          const stageW = Math.max(stageRect.width || 0, window.innerWidth || 0, 360);
+          const stageH = Math.max(stageRect.height || 0, window.innerHeight || 0, 600);
+          const scaleX = stageW / 1000;
+          const scaleY = stageH / 800;
+
+          const isSmallMobile = window.innerWidth <= 440;
+          const isTablet = window.innerWidth <= 768;
+          const cardW = isSmallMobile ? 58 : (isTablet ? 66 : 85);
+          const cardH = isSmallMobile ? 78 : (isTablet ? 88 : 115);
+
+          if (isNaN(globalDistance)) globalDistance = 0;
+
+          if (!railPaused) {
+            globalDistance = (globalDistance + speed) % pathLen;
+          }
+
+          const numCards = cardElements.length;
+          cardElements.forEach((item, i) => {
+            const cardDist = (globalDistance + (i * (pathLen / numCards))) % pathLen;
+            const pt = photoPath.getPointAtLength(cardDist);
+
+            // Smooth tangent angle using local delta without boundary flipping
+            const d1 = Math.max(0, cardDist - 3);
+            const d2 = Math.min(pathLen, cardDist + 3);
+            const pt1 = photoPath.getPointAtLength(d1);
+            const pt2 = photoPath.getPointAtLength(d2);
+
+            if (pt && pt1 && pt2 && !isNaN(pt.x) && !isNaN(pt.y)) {
+              const x = pt.x * scaleX;
+              const y = pt.y * scaleY;
+              const rawAngle = Math.atan2((pt2.y - pt1.y) * scaleY, (pt2.x - pt1.x) * scaleX) * (180 / Math.PI);
+              // Gentle tilt along the half-circle arch without turning sideways
+              const angle = Math.max(-26, Math.min(26, rawAngle * 0.48));
+
+              item.element.style.transform = `translate3d(${x - cardW / 2}px, ${y - cardH / 2}px, 0) rotate(${angle}deg)`;
+            }
+          });
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* --------------------------------------------------------------------------
+     3. AUDIO CONTROLS & SYNCHRONIZED LYRICS ENGINE
+     -------------------------------------------------------------------------- */
+  function toggleAudio() {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
+    if (!bgAudioElement.src || !bgAudioElement.src.includes(".mp")) {
+      bgAudioElement.src = "deeperthanitseems.mpeg";
+    }
+
+    if (bgAudioElement.paused) {
+      bgAudioElement.play().catch(e => console.log("Audio play on user action", e));
+      isAudioPlaying = true;
+      if (musicWaveIcon) musicWaveIcon.classList.remove("paused");
+    } else {
+      bgAudioElement.pause();
+      isAudioPlaying = false;
+      if (musicWaveIcon) musicWaveIcon.classList.add("paused");
+      if (lyricsBadgeText) lyricsBadgeText.innerText = "🎵 Song Paused — Tap To Play";
+    }
+  }
+
+  if (lyricsFloatContainer) {
+    lyricsFloatContainer.addEventListener("click", toggleAudio);
+  }
+
+  let currentActiveLyricIndex = -1;
+
+  function updateLyricsSync() {
+    const curTime = bgAudioElement.currentTime;
+
+    if (typeof songLyricsData === 'undefined' || !songLyricsData || !songLyricsData.length) return;
+
+    let activeIdx = -1;
+    for (let i = 0; i < songLyricsData.length; i++) {
+      if (songLyricsData[i].time <= curTime + 0.15) {
+        activeIdx = i;
+      } else {
+        break;
+      }
+    }
+
+    if (activeIdx !== currentActiveLyricIndex) {
+      currentActiveLyricIndex = activeIdx;
+      if (!lyricsBadgeText) return;
+
+      if (activeIdx === -1) {
+        lyricsBadgeText.innerText = "🎵 Deeper Than It Seems — Jace June";
+      } else {
+        const activeItem = songLyricsData[activeIdx];
+        lyricsBadgeText.innerText = activeItem.text;
+        lyricsBadgeText.classList.remove("lyric-text-fade");
+        void lyricsBadgeText.offsetWidth;
+        lyricsBadgeText.classList.add("lyric-text-fade");
+      }
+    }
+  }
+
+  bgAudioElement.addEventListener("timeupdate", updateLyricsSync);
+
+  bgAudioElement.addEventListener("play", () => {
+    isAudioPlaying = true;
+    if (musicWaveIcon) musicWaveIcon.classList.remove("paused");
+  });
+
+  bgAudioElement.addEventListener("pause", () => {
+    isAudioPlaying = false;
+    if (musicWaveIcon) musicWaveIcon.classList.add("paused");
+    if (lyricsBadgeText) lyricsBadgeText.innerText = "🎵 Song Paused — Tap To Play";
+  });
+
+  bgAudioElement.addEventListener("ended", () => {
+    isAudioPlaying = false;
+    if (musicWaveIcon) musicWaveIcon.classList.add("paused");
+    if (lyricsBadgeText) lyricsBadgeText.innerText = "🎵 Song Ended — Tap To Replay";
+  });
+
+  /* --------------------------------------------------------------------------
+     PLAY AUDIO ON USER INTERACTION (AFTER ANY BUTTON OR TOUCH EVENT)
+     -------------------------------------------------------------------------- */
+  function setupAudioOnInteraction() {
+    if (!bgAudioElement) return;
+
+    if (!bgAudioElement.src || !bgAudioElement.src.includes(".mp")) {
+      bgAudioElement.src = "deeperthanitseems.mp3";
+    }
+
+    // Initial state: paused, invite user to tap
+    if (musicWaveIcon) musicWaveIcon.classList.add("paused");
+    if (lyricsBadgeText) lyricsBadgeText.innerText = "🎵 Tap Any Button To Play Music ✨";
+
+    const startAudioPlayback = () => {
+      if (!bgAudioElement.paused) {
+        cleanInteractionListeners();
+        return;
+      }
+      const playPromise = bgAudioElement.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isAudioPlaying = true;
+          if (musicWaveIcon) musicWaveIcon.classList.remove("paused");
+          if (lyricsBadgeText) {
+            lyricsBadgeText.innerText = "🎵 Deeper Than It Seems — Jace June";
+          }
+          cleanInteractionListeners();
+        }).catch((err) => {
+          console.log("Audio waiting for explicit interaction:", err);
+        });
+      }
+    };
+
+    const interactionEvents = ["click", "touchstart", "touchend", "pointerdown", "keydown"];
+    const cleanInteractionListeners = () => {
+      interactionEvents.forEach(evt => {
+        window.removeEventListener(evt, startAudioPlayback, true);
+        document.removeEventListener(evt, startAudioPlayback, true);
+      });
+    };
+
+    // Trigger on any button tap or click anywhere
+    interactionEvents.forEach(evt => {
+      window.addEventListener(evt, startAudioPlayback, { capture: true, passive: true });
+      document.addEventListener(evt, startAudioPlayback, { capture: true, passive: true });
+    });
+  }
+
+
+  /* --------------------------------------------------------------------------
+     4. CANDLE BLOWING & CONFETTI FIREWORKS
+     -------------------------------------------------------------------------- */
+  if (blowCandleBtn) {
+    blowCandleBtn.addEventListener("click", () => {
+      if (candleBlown) return;
+      candleBlown = true;
+
+      if (candleFlame) candleFlame.classList.add("blown-out");
+      if (candleGlow) candleGlow.style.opacity = "0";
+      if (candleSmoke) candleSmoke.classList.add("active");
+      if (blowStatusHint) blowStatusHint.innerText = "Wish Made! 🎉 Celebration Unlocked!";
+
+      if (window.confetti) {
+        confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+        setTimeout(() => {
+          confetti({ particleCount: 80, angle: 60, spread: 55, origin: { x: 0 } });
+          confetti({ particleCount: 80, angle: 120, spread: 55, origin: { x: 1 } });
+        }, 300);
+      }
+
+      if (!isAudioPlaying) toggleAudio();
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     5. PHOTO GALLERY WITH CATEGORY TABS & LIGHTBOX
+     -------------------------------------------------------------------------- */
+  function renderPhotoGrid(photosList, category = "all") {
+    if (!photoGridContainer) return;
+
+    const filtered = category === "all" 
+      ? photosList 
+      : photosList.filter(p => p.category === category);
+
+    photoGridContainer.innerHTML = filtered.map((p, idx) => `
+      <div class="photo-card" data-idx="${idx}">
+        <img src="${p.url}" alt="${p.title}" loading="lazy">
+        <div class="photo-overlay">
+          <span class="photo-title">${p.title}</span>
+          <span class="photo-caption">${p.caption}</span>
+        </div>
+      </div>
+    `).join('');
+
+    // Attach click for lightbox
+    photoGridContainer.querySelectorAll(".photo-card").forEach(card => {
+      card.addEventListener("click", () => {
+        const idx = card.getAttribute("data-idx");
+        const item = filtered[idx];
+        if (item) {
+          lightboxImg.src = item.url;
+          lightboxTitle.innerText = item.title;
+          lightboxCaption.innerText = item.caption;
+          lightboxModal.classList.remove("hidden");
+        }
+      });
+    });
+  }
+
+  if (galleryFilterTabs) {
+    galleryFilterTabs.querySelectorAll(".gallery-tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        galleryFilterTabs.querySelectorAll(".gallery-tab-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeGalleryCategory = btn.getAttribute("data-category");
+        renderPhotoGrid(appData.photos, activeGalleryCategory);
+      });
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     6. WISH CARDS CAROUSEL
+     -------------------------------------------------------------------------- */
+  function updateWishCounter() {
+    const total = appData && appData.wishes ? appData.wishes.length : 4;
+    if (wishCounter) wishCounter.innerText = `${currentWishIndex + 1} / ${total}`;
+  }
+
+  function showWishCard(index) {
+    const cards = document.querySelectorAll(".wish-card");
+    cards.forEach((card, idx) => {
+      card.className = "wish-card";
+      if (idx === index) {
+        card.classList.add("active-card");
+      } else if (idx === (index + 1) % cards.length) {
+        card.classList.add("next-card");
+      } else {
+        card.classList.add("prev-card");
+      }
+    });
+    updateWishCounter();
+  }
+
+  function renderWishDeck() {
+    if (!wishDeckContainer) return;
+
+    const defaultWishes = [
+      { icon: "🌟", title: "Shine Always", text: "Farheen, may your journey be filled with glowing moments, inspiring adventures, and dreams coming true!" },
+      { icon: "💖", title: "Endless Love & Joy", text: "Every memory of your laughter brings a warm smile to my face. May today be as sweet as your spirit!" },
+      { icon: "🌺", title: "Stay Graceful", text: "You bring so much light into the world simply by being your wonderful self." },
+      { icon: "🎁", title: "A Year of Blessings", text: "May every single day of your new chapter open doors to success, health, and memorable smiles!" }
+    ];
+    const wishesList = appData && appData.wishes ? appData.wishes : defaultWishes;
+    
+    wishDeckContainer.innerHTML = wishesList.map((w, idx) => `
+      <div class="wish-card ${idx === 0 ? 'active-card' : idx === 1 ? 'next-card' : 'prev-card'}" data-index="${idx}">
+        <div class="card-icon">${w.icon || '✨'}</div>
+        <h3>${w.title}</h3>
+        <p>${w.text}</p>
+      </div>
+    `).join('');
+
+    updateWishCounter();
+  }
+
+  if (prevWishBtn) {
+    prevWishBtn.addEventListener("click", () => {
+      const total = appData && appData.wishes ? appData.wishes.length : 4;
+      currentWishIndex = (currentWishIndex - 1 + total) % total;
+      showWishCard(currentWishIndex);
+    });
+  }
+
+  if (nextWishBtn) {
+    nextWishBtn.addEventListener("click", () => {
+      const total = appData && appData.wishes ? appData.wishes.length : 4;
+      currentWishIndex = (currentWishIndex + 1) % total;
+      showWishCard(currentWishIndex);
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     7. GIFT BOX & SURPRISE WORDS FLOW (SMOOTH & LAG-FREE)
+     -------------------------------------------------------------------------- */
+  function revealSurpriseCardDirectly() {
+    // 1. Smoothly fade and collapse present box
+    if (giftBox) {
+      giftBox.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+      giftBox.style.opacity = "0";
+      giftBox.style.transform = "scale(0.85)";
+      setTimeout(() => {
+        giftBox.style.display = "none";
+      }, 380);
+    }
+
+    // 2. Smoothly unveil the grand surprise card
+    if (giftRevealCard) {
+      giftRevealCard.classList.remove("hidden");
+      setTimeout(() => {
+        giftRevealCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+
+    // 3. Multi-stage confetti celebration
+    if (window.confetti) {
+      confetti({ particleCount: 130, spread: 85, origin: { y: 0.6 } });
+      setTimeout(() => {
+        confetti({ particleCount: 75, angle: 60, spread: 60, origin: { x: 0.1, y: 0.6 } });
+        confetti({ particleCount: 75, angle: 120, spread: 60, origin: { x: 0.9, y: 0.6 } });
+      }, 260);
+    }
+  }
+
+  // Surprise Video player flow (opens when gift box is clicked)
+  function playSurpriseVideoFlow() {
+    // Pause background audio while video plays
+    if (bgAudioElement && !bgAudioElement.paused) {
+      bgAudioElement.pause();
+    }
+
+    // Open video modal
+    if (videoSurpriseModal) {
+      videoSurpriseModal.classList.remove("hidden");
+    }
+
+    // Play video smoothly
+    if (surpriseVideoElement) {
+      surpriseVideoElement.currentTime = 0;
+      const playPromise = surpriseVideoElement.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(err => console.log("User gesture required for video play", err));
+      }
+    }
+  }
+
+  function closeVideoModal() {
+    if (surpriseVideoElement) {
+      surpriseVideoElement.pause();
+    }
+    if (videoSurpriseModal) {
+      videoSurpriseModal.classList.add("hidden");
+    }
+    // Resume background birthday song
+    if (bgAudioElement && bgAudioElement.paused) {
+      bgAudioElement.play().catch(e => console.log("Resume audio:", e));
+    }
+    // Reveal the grand surprise wish card after video is closed
+    if (giftRevealCard && giftRevealCard.classList.contains("hidden")) {
+      revealSurpriseCardDirectly();
+    }
+  }
+
+  if (giftBox) {
+    giftBox.addEventListener("click", () => {
+      // Smooth 3D lid lift animation
+      giftBox.classList.add("opened");
+      if (window.confetti) {
+        confetti({ particleCount: 90, spread: 75, origin: { y: 0.55 } });
+      }
+      // Open the video directly instead of the wish card!
+      setTimeout(() => {
+        playSurpriseVideoFlow();
+      }, 350);
+    });
+  }
+
+  // Auto-confetti when video finishes playing
+  if (surpriseVideoElement) {
+    surpriseVideoElement.addEventListener("ended", () => {
+      if (window.confetti) {
+        confetti({ particleCount: 90, spread: 80, origin: { y: 0.5 } });
+      }
+    });
+  }
+
+  // Close video modal buttons
+  if (continueToWishBtn) {
+    continueToWishBtn.addEventListener("click", closeVideoModal);
+  }
+  if (closeVideoBtn) {
+    closeVideoBtn.addEventListener("click", closeVideoModal);
+  }
+
+  // Replay video button on surprise card
+  if (replayVideoBtn) {
+    replayVideoBtn.addEventListener("click", () => {
+      playSurpriseVideoFlow();
+    });
+  }
+
+  // Back to top button
+  if (replayBtn) {
+    replayBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Open secret letter modal
+  if (openSurpriseBtn) {
+    openSurpriseBtn.addEventListener("click", () => {
+      if (surpriseModal) surpriseModal.classList.remove("hidden");
+      if (window.confetti) {
+        confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+      }
+    });
+  }
+
+  if (closeSurpriseBtn) {
+    closeSurpriseBtn.addEventListener("click", () => surpriseModal && surpriseModal.classList.add("hidden"));
+  }
+  if (sealSurpriseBtn) {
+    sealSurpriseBtn.addEventListener("click", () => surpriseModal && surpriseModal.classList.add("hidden"));
+  }
+
+  // --- Deep Heart Letter Handlers ---
+  function openHeartLetterFlow() {
+    if (surpriseModal) surpriseModal.classList.add("hidden");
+    if (heartLetterModal) {
+      heartLetterModal.classList.remove("hidden");
+      if (heartLetterContainer) heartLetterContainer.scrollTop = 0;
+    }
+    if (window.confetti) {
+      confetti({ particleCount: 110, spread: 85, origin: { y: 0.55 } });
+      setTimeout(() => {
+        confetti({ particleCount: 70, angle: 60, spread: 55, origin: { x: 0.1, y: 0.6 } });
+        confetti({ particleCount: 70, angle: 120, spread: 55, origin: { x: 0.9, y: 0.6 } });
+      }, 250);
+    }
+  }
+
+  // Transition from first letter teaser to heart letter
+  if (openHeartLetterBtn) {
+    openHeartLetterBtn.addEventListener("click", openHeartLetterFlow);
+  }
+
+  // Direct button from surprise card
+  if (openHeartLetterDirectBtn) {
+    openHeartLetterDirectBtn.addEventListener("click", openHeartLetterFlow);
+  }
+
+  // Back from heart letter to first letter
+  if (backToFirstLetterBtn) {
+    backToFirstLetterBtn.addEventListener("click", () => {
+      if (heartLetterModal) heartLetterModal.classList.add("hidden");
+      if (surpriseModal) surpriseModal.classList.remove("hidden");
+    });
+  }
+
+  // Close heart letter modal
+  if (closeHeartLetterBtn) {
+    closeHeartLetterBtn.addEventListener("click", () => {
+      if (heartLetterModal) heartLetterModal.classList.add("hidden");
+    });
+  }
+
+  if (sealHeartLetterBtn) {
+    sealHeartLetterBtn.addEventListener("click", () => {
+      if (heartLetterModal) heartLetterModal.classList.add("hidden");
+      if (window.confetti) {
+        confetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } });
+      }
+    });
+  }
+
+  if (heartLetterModal) {
+    heartLetterModal.addEventListener("click", (e) => {
+      if (e.target === heartLetterModal) {
+        heartLetterModal.classList.add("hidden");
+      }
+    });
+  }
+
+  if (closeLightboxBtn) {
+    closeLightboxBtn.addEventListener("click", () => lightboxModal && lightboxModal.classList.add("hidden"));
+  }
+  if (lightboxModal) {
+    lightboxModal.addEventListener("click", (e) => {
+      if (e.target === lightboxModal) {
+        lightboxModal.classList.add("hidden");
+      }
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     8. DATA INITIALIZATION & RENDERING
+     -------------------------------------------------------------------------- */
+  const deepLetterContent = [
+    { type: "lead", text: "Happy Birthday, My Cutiee Farheen🎂❤️" },
+    { type: "para", text: "I don’t know if this is the right time to say all this or not, but I just want to express something that has been in my heart for a long time. I don’t want to make your birthday too emotional, but I feel like today is a good opportunity to tell you how much your presence actually means to me." },
+    { type: "para", text: "There was a time when I lost you, and honestly, even back then, I loved you so much, truly and deeply from my heart. ❤️ Maybe I didn’t know how to express it properly, and maybe I wasn’t mature enough to understand how much you truly meant to me. I made so many mistakes, and I know that some of my actions hurt you. For all of that, I’m genuinely sorry. I wish I could go back and do things differently, but I can’t change the past. All I can do now is learn from my mistakes and be grateful that I got the chance to have you in my life again." },
+    { type: "para", text: "From the day we became friends in February 2020 until today, you have always been my comfort zone. No matter how much time passed or how many things happened between us, there has always been something about you that makes me feel like I can simply be myself. ❤️" },
+    { type: "para", text: "Thank you for coming back into my life, even if it’s as a good friend for now. Having you here again genuinely makes my life happier. You are that one person with whom I can share almost everything and talk about literally anything without overthinking." },
+    { type: "para", text: "With you, I can be childish, silly, annoying, emotional, or just say whatever is on my mind without constantly worrying about being judged. I don’t have to pretend to be someone I’m not. You are my safe place, my comfort zone, and someone with whom I can truly be myself. 🥹❤️" },
+    { type: "para", text: "And there’s something I’ve realized about myself too. Even though we aren’t together, whenever I look at another girl, somewhere inside me it feels like I’m being unfaithful to you. I know we aren’t in a relationship right now, and I’m not saying this to put any pressure on you. It’s simply how deeply my heart has always been attached to you. Somehow, a part of me still feels like it belongs to you. ❤️" },
+    { type: "para", text: "Thank you for being such a good friend even after I hurt you. Thank you for giving me another chance to have you in my life. You came back as a friend, but your presence filled a part of my life that I didn’t even realize was missing." },
+    { type: "para", text: "And I want you to know something else…" },
+    { type: "para", text: "I promise I’ll try my best to become the person you want me to be and the person your family would be proud to have in your life. InshaAllah, I’ll become that person soon. I know I still have a lot to improve, and I know promises alone don’t mean much. I want to prove it through my actions, my efforts, and the way I treat you. I don’t want to repeat the mistakes I made before or give you another reason to feel hurt. I just want to become someone you can trust, respect, and feel proud of having in your life. ❤️" },
+    { type: "para", text: "Maybe some people come into our lives and leave a mark that time can never erase. And maybe some bonds, no matter how complicated they become, somehow find their way back to each other. I’m genuinely grateful that you found your way back to me." },
+    { type: "para", text: "And honestly, my cutiee, your smile is still one of my favourite things about you. 🥹❤️ There is something truly special about it—it can change the entire mood in just a moment. And your hair… MashaAllah, they add such a beautiful charm to you. Sometimes your smile and your hair together make you look so effortlessly adorable that I genuinely don’t know what to say. 🫶🏻" },
+    { type: "para", text: "Just keep smiling like this, because protecting that beautiful smile of yours might just be my favourite thing to do." },
+    { type: "lead", text: "Happy Birthday, my smile keeper, my cutiee Farheen. 💕" },
+    { 
+      type: "para", 
+      text: "Bas aaj ek dil se dua hai… Allah aapko woh sab kuch ata kare jo aapke dil ke liye behtareen ho. Aapki zindagi mein kabhi kisi cheez ki kami na ho jo aapko khushi de. Jo bhi raaste aapke liye likhe gaye hain, woh hamesha khoobsurat manzilon tak le jaayein. Aur jab bhi zindagi mushkil lage, Allah aapko itni himmat de ke aap har mushkil ko muskura kar paar kar sakein. Aapki muskurahat hamesha yunhi roshan rahe, kyunki woh mere liye bhi bohot khaas hai. Ameen. 🤲🏻❤️🌙" 
+    },
+    { type: "para", text: "Thank you for being here, Farheen. Thank you for being my comfort zone since February 2020, my smile keeper, and my missing part. ❤️" },
+    { type: "para", text: "And once again, I’m truly sorry for everything I did wrong. I can’t change the past, but I can make sure I learn from it. I just hope that from now on, I can give you more reasons to smile than reasons to be hurt." },
+    { type: "lead", text: "Happy Birthday once again, my cutiee, my smile keeper, my comfort zone, and my missing part. ❤️🎂🫶🏻" }
+  ];
+
+  function renderHeartLetter() {
+    if (!heartLetterContainer) return;
+
+    // Dynamically render customized letter from customize.json if available
+    if (appData && appData.heartLetterBody) {
+      const paras = appData.heartLetterBody.split(/\n\s*\n/).filter(p => p.trim());
+      heartLetterContainer.innerHTML = paras.map((p, idx) => {
+        const trimmed = p.trim();
+        if (idx === 0 || idx === paras.length - 1 || trimmed.startsWith("Happy Birthday")) {
+          return `<p class="heart-lead-para">${trimmed}</p>`;
+        }
+        return `<p class="heart-letter-para">${trimmed}</p>`;
+      }).join("");
+      return;
+    }
+
+    heartLetterContainer.innerHTML = deepLetterContent.map(item => {
+      if (item.type === "lead") {
+        return `<p class="heart-lead-para">${item.text}</p>`;
+      }
+      return `<p class="heart-letter-para">${item.text}</p>`;
+    }).join("");
+  }
+  function loadData() {
+    fetch("customize.json?v=" + Date.now(), { cache: "no-store" })
+      .then(res => res.json())
+      .then(data => {
+        if (data) {
+          appData = data;
+          renderApp();
+        }
+      })
+      .catch(err => {
+        console.warn("Using default fallback data", err);
+        appData = defaultAppData;
+        renderApp();
+      });
+  }
+
+  function renderApp() {
+    if (!appData) appData = defaultAppData;
+
+    if (appData.mainWish && specialWishText) {
+      specialWishText.innerText = `"${appData.mainWish}"`;
+    }
+    if (appData.heroText && heroDescText) {
+      heroDescText.innerText = appData.heroText;
+    }
+    if (appData.letterTitle && modalLetterTitle) {
+      modalLetterTitle.innerText = appData.letterTitle;
+    }
+    if (appData.letterBody && modalLetterContent) {
+      modalLetterContent.innerText = appData.letterBody;
+    }
+    if (appData.videoUrl && surpriseVideoElement) {
+      surpriseVideoElement.src = appData.videoUrl;
+    }
+    if (appData.heartLetterTitle && heartLetterMainTitle) {
+      heartLetterMainTitle.innerText = appData.heartLetterTitle;
+    }
+    const heartSubtitleEl = document.querySelector(".heart-modal-subtitle");
+    if (appData.heartLetterSubtitle && heartSubtitleEl) {
+      heartSubtitleEl.innerText = appData.heartLetterSubtitle;
+    }
+
+    renderHeartLetter();
+    initPhotoRail();
+    startRailAnimation();
+
+    if (appData.photos) {
+      renderPhotoGrid(appData.photos, activeGalleryCategory);
+    }
+    renderWishDeck();
+  }
+
+  // Render immediately with full fallback data so everything appears right away
+  renderApp();
+  // Fetch customized data if running on a local server
+  loadData();
+  // Play song after any button or screen interaction
+  setupAudioOnInteraction();
+});
+</script>
 </body>
 
 </html>

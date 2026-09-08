@@ -1,6 +1,9 @@
 {
   "cleanUrls": true,
   "functions": {
+    "app.js": {
+      "includeFiles": "style/**,script/**,img/**,index.html,customize.json,*.mp3,*.mpeg,*.mp4"
+    },
     "server.js": {
       "includeFiles": "style/**,script/**,img/**,index.html,customize.json,*.mp3,*.mpeg,*.mp4"
     },
