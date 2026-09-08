@@ -24,8 +24,11 @@
   <!-- Ambient Particle Canvas -->
   <canvas id="sparkle-canvas"></canvas>
 
-  <!-- Background Audio Element with deeperthanitseems.mpeg -->
-  <audio id="bg-audio-element" src="deeperthanitseems.mpeg" autoplay loop preload="auto"></audio>
+  <!-- Background Audio Element with mp3 & mpeg fallbacks -->
+  <audio id="bg-audio-element" src="deeperthanitseems.mp3" autoplay loop preload="auto">
+    <source src="deeperthanitseems.mp3" type="audio/mpeg">
+    <source src="deeperthanitseems.mpeg" type="audio/mpeg">
+  </audio>
 
   <!-- MAIN SCROLLABLE SITE CONTAINER -->
   <div class="site-container">
@@ -240,7 +243,9 @@
 
       <div class="video-player-container">
         <video id="surprise-video-element" playsinline controls preload="none"
-          src="img/WhatsApp Video 2026-09-07 at 10.55.51 PM.mp4">
+          src="img/video_surprise.mp4">
+          <source src="img/video_surprise.mp4" type="video/mp4">
+          <source src="img/WhatsApp%20Video%202026-09-07%20at%2010.55.51%20PM.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>

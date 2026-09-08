@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     subtitle: "Farheen ❤️",
     mainWish: "You are in my heart, you shall be in there forever. My greatest wish is that you are happy when you think of me, as I am when I think of you.",
     heroText: "May your day be filled with love, laughter, and all the happiness your heart can hold. May this year bring you endless joy and unforgettable moments.",
-    videoUrl: "img/WhatsApp Video 2026-09-07 at 10.55.51 PM.mp4",
+    videoUrl: "img/video_surprise.mp4",
     photos: [
       {
         url: "img/IMG_20260722_022403.jpg.jpeg",
@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctx = canvas.getContext("2d");
   const bgAudioElement = document.getElementById("bg-audio-element");
   if (!bgAudioElement.getAttribute("src")) {
-    bgAudioElement.src = "deeperthanitseems.mpeg";
+    bgAudioElement.src = "deeperthanitseems.mp3";
   }
   const musicToggleBtn = document.getElementById("music-toggle-btn");
   const musicStatusText = document.getElementById("music-status-text");
@@ -567,7 +567,7 @@ document.addEventListener("DOMContentLoaded", () => {
      -------------------------------------------------------------------------- */
   function attemptAutoPlay() {
     if (!bgAudioElement.src || !bgAudioElement.src.includes(".mp")) {
-      bgAudioElement.src = "deeperthanitseems.mpeg";
+      bgAudioElement.src = "deeperthanitseems.mp3";
     }
 
     const unlockAndPlay = () => {
