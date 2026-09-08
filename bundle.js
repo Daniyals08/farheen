@@ -35,4 +35,36 @@ if (html.includes('id="embedded-lyrics-data"')) {
 }
 
 fs.writeFileSync(htmlPath, html, 'utf8');
-console.log('Bundle complete! Size:', Math.round(html.length / 1024), 'KB');
+
+// Sync to public directory for Vercel static CDN priority
+const publicDir = path.join(__dirname, 'public');
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir, { recursive: true });
+}
+fs.writeFileSync(path.join(publicDir, 'index.html'), html, 'utf8');
+
+function copyDirRecursive(src, dest) {
+  if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
+  fs.readdirSync(src).forEach(item => {
+    const srcItem = path.join(src, item);
+    const destItem = path.join(dest, item);
+    if (fs.statSync(srcItem).isDirectory()) {
+      copyDirRecursive(srcItem, destItem);
+    } else {
+      fs.copyFileSync(srcItem, destItem);
+    }
+  });
+}
+
+copyDirRecursive(path.join(__dirname, 'img'), path.join(publicDir, 'img'));
+copyDirRecursive(path.join(__dirname, 'style'), path.join(publicDir, 'style'));
+copyDirRecursive(path.join(__dirname, 'script'), path.join(publicDir, 'script'));
+
+['customize.json', 'deeperthanitseems.mp3', 'deeperthanitseems.mpeg'].forEach(file => {
+  const src = path.join(__dirname, file);
+  if (fs.existsSync(src)) {
+    fs.copyFileSync(src, path.join(publicDir, file));
+  }
+});
+
+console.log('Bundle complete! Embedded index.html and synced all assets to public/ successfully.');

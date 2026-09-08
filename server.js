@@ -45,12 +45,22 @@ const server = http.createServer((req, res) => {
     safePath = safePath.slice(1);
   }
 
-  // Resolve path against BASE_DIR and process.cwd()
+  // Resolve path against BASE_DIR, public directory, and process.cwd()
   let filePath = path.join(BASE_DIR, safePath);
   if (!fs.existsSync(filePath)) {
-    const cwdPath = path.join(process.cwd(), safePath);
-    if (fs.existsSync(cwdPath)) {
-      filePath = cwdPath;
+    const pubPath = path.join(BASE_DIR, 'public', safePath);
+    if (fs.existsSync(pubPath)) {
+      filePath = pubPath;
+    } else {
+      const cwdPath = path.join(process.cwd(), safePath);
+      if (fs.existsSync(cwdPath)) {
+        filePath = cwdPath;
+      } else {
+        const cwdPubPath = path.join(process.cwd(), 'public', safePath);
+        if (fs.existsSync(cwdPubPath)) {
+          filePath = cwdPubPath;
+        }
+      }
     }
   }
 
