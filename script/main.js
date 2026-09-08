@@ -563,16 +563,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* --------------------------------------------------------------------------
-     AUTOPLAY AUDIO ON PAGE ENTRANCE (IMMEDIATE & FIRST-GESTURE UNLOCK)
+     PLAY AUDIO ON USER INTERACTION (AFTER ANY BUTTON OR TOUCH EVENT)
      -------------------------------------------------------------------------- */
-  function attemptAutoPlay() {
+  function setupAudioOnInteraction() {
+    if (!bgAudioElement) return;
+
     if (!bgAudioElement.src || !bgAudioElement.src.includes(".mp")) {
       bgAudioElement.src = "deeperthanitseems.mp3";
     }
 
-    const unlockAndPlay = () => {
+    // Initial state: paused, invite user to tap
+    if (musicWaveIcon) musicWaveIcon.classList.add("paused");
+    if (lyricsBadgeText) lyricsBadgeText.innerText = "🎵 Tap Any Button To Play Music ✨";
+
+    const startAudioPlayback = () => {
       if (!bgAudioElement.paused) {
-        cleanGestureListeners();
+        cleanInteractionListeners();
         return;
       }
       const playPromise = bgAudioElement.play();
@@ -580,42 +586,28 @@ document.addEventListener("DOMContentLoaded", () => {
         playPromise.then(() => {
           isAudioPlaying = true;
           if (musicWaveIcon) musicWaveIcon.classList.remove("paused");
-          if (lyricsBadgeText && !lyricsBadgeText.innerText.includes("Deeper")) {
+          if (lyricsBadgeText) {
             lyricsBadgeText.innerText = "🎵 Deeper Than It Seems — Jace June";
           }
-          cleanGestureListeners();
+          cleanInteractionListeners();
         }).catch((err) => {
-          // Keep gesture listeners active until browser allows playback
+          console.log("Audio waiting for explicit interaction:", err);
         });
       }
     };
 
-    const gestureEvents = ["pointerdown", "touchstart", "touchend", "mousedown", "click", "keydown"];
-    const cleanGestureListeners = () => {
-      gestureEvents.forEach(evt => {
-        window.removeEventListener(evt, unlockAndPlay, true);
-        document.removeEventListener(evt, unlockAndPlay, true);
+    const interactionEvents = ["click", "touchstart", "touchend", "pointerdown", "keydown"];
+    const cleanInteractionListeners = () => {
+      interactionEvents.forEach(evt => {
+        window.removeEventListener(evt, startAudioPlayback, true);
+        document.removeEventListener(evt, startAudioPlayback, true);
       });
     };
 
-    // Attach listeners on both window and document with capture: true
-    gestureEvents.forEach(evt => {
-      window.addEventListener(evt, unlockAndPlay, { capture: true, passive: true });
-      document.addEventListener(evt, unlockAndPlay, { capture: true, passive: true });
-    });
-
-    // 1. Immediate attempt right away on script load
-    unlockAndPlay();
-
-    // 2. Secondary attempt when window finishes full loading
-    window.addEventListener("load", unlockAndPlay, { once: true });
-    document.addEventListener("DOMContentLoaded", unlockAndPlay, { once: true });
-
-    // 3. Attempt when tab becomes active / visible
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden && bgAudioElement.paused) {
-        unlockAndPlay();
-      }
+    // Trigger on any button tap or click anywhere
+    interactionEvents.forEach(evt => {
+      window.addEventListener(evt, startAudioPlayback, { capture: true, passive: true });
+      document.addEventListener(evt, startAudioPlayback, { capture: true, passive: true });
     });
   }
 
@@ -1060,6 +1052,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderApp();
   // Fetch customized data if running on a local server
   loadData();
-  // Automatically start playing birthday song
-  attemptAutoPlay();
+  // Play song after any button or screen interaction
+  setupAudioOnInteraction();
 });

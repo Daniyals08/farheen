@@ -1,11 +1,13 @@
 {
   "cleanUrls": true,
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/$1"
+  "functions": {
+    "server.js": {
+      "includeFiles": "style/**,script/**,img/**,index.html,customize.json,*.mp3,*.mpeg,*.mp4"
+    },
+    "index.js": {
+      "includeFiles": "style/**,script/**,img/**,index.html,customize.json,*.mp3,*.mpeg,*.mp4"
     }
-  ],
+  },
   "headers": [
     {
       "source": "/(.*)",

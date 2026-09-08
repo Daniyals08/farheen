@@ -29,17 +29,36 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  const parsedUrl = url.parse(req.url);
-  let safePath = path.normalize(decodeURIComponent(parsedUrl.pathname)).replace(/^(\.\.[\/\\])+/, '');
-  
-  if (safePath === '/' || safePath === '\\') {
-    safePath = '/index.html';
+  let pathname = '/index.html';
+  try {
+    const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+    pathname = decodeURIComponent(parsedUrl.pathname);
+  } catch (e) {
+    pathname = (req.url || '/').split('?')[0];
   }
 
-  const filePath = path.join(BASE_DIR, safePath);
+  let safePath = path.normalize(pathname).replace(/^(\.\.[\/\\])+/, '');
+  if (safePath === '/' || safePath === '\\' || safePath === '') {
+    safePath = 'index.html';
+  }
+  while (safePath.startsWith('/') || safePath.startsWith('\\')) {
+    safePath = safePath.slice(1);
+  }
 
-  // Security check: ensure filePath is within BASE_DIR
-  if (!filePath.startsWith(BASE_DIR)) {
+  // Resolve path against BASE_DIR and process.cwd()
+  let filePath = path.join(BASE_DIR, safePath);
+  if (!fs.existsSync(filePath)) {
+    const cwdPath = path.join(process.cwd(), safePath);
+    if (fs.existsSync(cwdPath)) {
+      filePath = cwdPath;
+    }
+  }
+
+  const resolvedBase = path.resolve(BASE_DIR);
+  const resolvedCwd = path.resolve(process.cwd());
+  const resolvedFile = path.resolve(filePath);
+
+  if (!resolvedFile.startsWith(resolvedBase) && !resolvedFile.startsWith(resolvedCwd)) {
     res.writeHead(403, { 'Content-Type': 'text/plain' });
     res.end('403 Forbidden');
     return;
@@ -47,6 +66,7 @@ const server = http.createServer((req, res) => {
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
+      console.warn('404 Not Found:', req.url, '-> tried:', filePath);
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       res.end('404 Not Found');
       return;
