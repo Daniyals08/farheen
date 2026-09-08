@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Happy Birthday Farheen ❤️</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500;1,600&family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+  <!-- Ambient Particle Canvas -->
+  <canvas id="sparkle-canvas"></canvas>
+
+  <!-- Background Audio Element with deeperthanitseems.mpeg -->
+  <audio id="bg-audio-element" src="deeperthanitseems.mpeg" autoplay loop preload="auto"></audio>
+
+  <!-- MAIN SCROLLABLE SITE CONTAINER -->
+  <div class="site-container">
+
+    <!-- SECTION 1: HERO & BACKGROUND CURVED PHOTO RAIL -->
+    <section id="hero-section" class="page-section hero-section">
+
+      <!-- 3D Curved Moving Photo Rail Track (BEHIND HERO CONTENT) -->
+      <div class="hero-rail-bg" id="hero-rail-bg">
+        <svg id="rail-svg-container" viewBox="0 0 1000 800" preserveAspectRatio="none">
+          <path id="photo-motion-path" d="M -100 780 C 40 450, 180 60, 500 60 C 820 60, 960 450, 1100 780" fill="none"
+            stroke="transparent" />
+        </svg>
+        <div id="photo-rail-stage" class="photo-rail-stage">
+          <!-- Photo cards rendered dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Hero Floating Content Layer (IN FRONT OF RAIL) -->
+      <div class="hero-content-center">
+        <div class="badge-tag">✨ Special Birthday Celebration ✨</div>
+
+        <h1 class="main-title">
+          Happy<br>
+          Birthday<br>
+          <span class="highlight-name">Farheen <span class="heart-icon">❤️</span></span>
+        </h1>
+
+        <p class="hero-desc" id="hero-desc-text">
+          May your day be filled with love, laughter, and all the happiness your heart can hold. May this year bring you
+          endless joy and unforgettable moments.
+        </p>
+
+        <!-- Action Button Bar -->
+        <div class="action-buttons">
+          <a href="#cake-section" class="btn-action btn-surprise glow-btn">
+            <i class="fa-solid fa-cake-candles"></i>
+            <span>Cut The Cake & Make Wish 🎂</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator Hint -->
+      <div class="scroll-down-hint">
+        <span>Scroll For Cake & Memories</span>
+        <i class="fa-solid fa-chevron-down bounce-arrow"></i>
+      </div>
+    </section>
+
+    <!-- SECTION 2: INTERACTIVE 3D CAKE & CANDLE BLOWOUT -->
+    <section id="cake-section" class="page-section cake-section">
+      <div class="section-header">
+        <span class="sub-badge">Make A Wish</span>
+        <h2>Blow Out The Candles! 🕯️</h2>
+        <p class="section-subtitle">Tap below to blow out the candle and launch celebration fireworks!</p>
+      </div>
+
+      <!-- 3D Interactive Cake -->
+      <div class="cake-wrapper">
+        <div class="cake">
+          <div class="plate"></div>
+          <div class="layer layer-bottom"></div>
+          <div class="layer layer-middle"></div>
+          <div class="layer layer-top"></div>
+          <div class="icing"></div>
+          <div class="drips">
+            <div class="drip"></div>
+            <div class="drip"></div>
+            <div class="drip"></div>
+            <div class="drip"></div>
+            <div class="drip"></div>
+          </div>
+
+          <!-- Candle -->
+          <div class="candle" id="birthday-candle">
+            <div class="flame-glow" id="candle-glow"></div>
+            <div class="flame" id="candle-flame"></div>
+            <div class="smoke" id="candle-smoke"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cake-actions">
+        <button id="blow-candle-btn" class="btn-action btn-surprise glow-btn">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Blow Candle & Make Wish
+        </button>
+        <p id="blow-status-hint" class="status-hint">Tap above to extinguish the flame ✨</p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: MEMORY LANE PHOTO GALLERY GRID WITH CATEGORIES -->
+    <section id="gallery-section" class="page-section gallery-section">
+      <div class="section-header">
+        <span class="sub-badge">Captured Moments</span>
+        <h2>Our Memory Lane 📸</h2>
+        <p class="section-subtitle">A collection of cherished portraits, moments together, and late-night calls!</p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="gallery-tabs-wrapper">
+        <div class="gallery-tabs" id="gallery-filter-tabs">
+          <button class="gallery-tab-btn active" data-category="all">
+            <i class="fa-solid fa-sparkles"></i> All Memories
+          </button>
+          <button class="gallery-tab-btn" data-category="her">
+            <i class="fa-solid fa-crown"></i> Moments Together </button>
+          <button class="gallery-tab-btn" data-category="together">
+            <i class="fa-solid fa-heart"></i> Radiant Farheen
+          </button>
+          <button class="gallery-tab-btn" data-category="videocall">
+            <i class="fa-solid fa-mobile-screen"></i> Video Calls
+          </button>
+        </div>
+      </div>
+
+      <!-- Photo Grid Container -->
+      <div class="photo-grid-wrapper">
+        <div class="photo-grid" id="photo-grid-container">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: INTERACTIVE WISH CARDS STACK -->
+    <section id="wishes-section" class="page-section wishes-section">
+      <div class="section-header">
+        <span class="sub-badge">Heartfelt Words</span>
+        <h2>Birthday Messages 💖</h2>
+        <p class="section-subtitle">Special cards filled with love and warm blessings for you.</p>
+      </div>
+
+      <div class="wish-deck-wrapper">
+        <div class="wish-deck" id="wish-deck-container">
+          <!-- Cards populated via JS -->
+        </div>
+        <div class="deck-controls">
+          <button id="prev-wish-btn" class="nav-round-btn" aria-label="Previous Wish"><i
+              class="fa-solid fa-arrow-left"></i></button>
+          <span id="wish-counter" class="counter-badge">1 / 4</span>
+          <button id="next-wish-btn" class="nav-round-btn" aria-label="Next Wish"><i
+              class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: INTERACTIVE 3D GIFT BOX & WORDS FROM THE HEART -->
+    <section id="gift-section" class="page-section gift-section">
+      <div class="section-header">
+        <span class="sub-badge">One Final Surprise</span>
+        <h2>Unwrap Your Gift 🎁</h2>
+        <p class="section-subtitle">Tap the present box to open your birthday video surprise ✨</p>
+      </div>
+
+      <div class="gift-box-container" id="gift-box">
+        <div class="gift-lid">
+          <div class="ribbon-bow"></div>
+        </div>
+        <div class="gift-body"></div>
+      </div>
+
+      <!-- The Grand Surprise Card (Revealed Smoothly After Video) -->
+      <div id="gift-reveal-card" class="gift-card hidden">
+        <div class="crown-icon">👑</div>
+        <span class="surprise-tag">✨ Words I Wanna Say To You ✨</span>
+        <h3 id="surprise-main-title">Something Special For Farheen ❤️</h3>
+
+        <!-- HEARTFELT WISH HIGHLIGHTED HERE IN SURPRISE SECTION -->
+        <div class="surprise-wish-highlight">
+          <span class="quote-mark-badge" aria-hidden="true">“</span>
+          <p id="special-wish-text" class="wish-quote">
+            "You are in my heart, you shall be in there forever. My greatest wish is that you are happy when you think
+            of me, as I am when I think of you."
+          </p>
+          <div class="wish-subtext">
+            <span>Always & forever my most cherished person 🌸</span>
+          </div>
+        </div>
+
+        <div class="surprise-action-buttons">
+          <button id="open-surprise-btn" class="btn-action btn-surprise">
+            <i class="fa-solid fa-envelope-open-text"></i> Open Secret Letter 💌
+          </button>
+          <button id="open-heart-letter-direct-btn" class="btn-action btn-surprise glow-btn">
+            <i class="fa-solid fa-heart"></i> Letter From My Heart ❤️
+          </button>
+          <button id="replay-video-btn" class="btn-action btn-outline">
+            <i class="fa-solid fa-film"></i> A Video For You 🎬
+          </button>
+          <button id="replay-btn" class="btn-action btn-outline">
+            <i class="fa-solid fa-arrow-up"></i> Back To Top
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <p>Made with ❤️ for My Farheen🥰 | Happy Birthday! 🎉</p>
+    </footer>
+
+  </div>
+
+  <!-- SURPRISE VIDEO MODAL (OPENS DIRECTLY ON GIFT CLICK) -->
+  <div id="video-surprise-modal" class="modal-overlay hidden">
+    <div class="video-modal-card">
+      <button class="modal-close" id="close-video-btn" aria-label="Close Video">&times;</button>
+
+      <div class="video-modal-header">
+        <span class="video-badge"><i class="fa-solid fa-film"></i> A Video For You</span>
+        <h3>A Special Video For You 🎬</h3>
+      </div>
+
+      <div class="video-player-container">
+        <video id="surprise-video-element" playsinline controls preload="none"
+          src="img/WhatsApp Video 2026-09-07 at 10.55.51 PM.mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-modal-footer">
+        <p class="video-hint-text">A reel to bring a smile to your face on your birthday ✨</p>
+        <button id="continue-to-wish-btn" class="btn-action btn-surprise glow-btn">
+          <span>View Birthday Wish & Letter</span> <i class="fa-solid fa-heart"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SURPRISE LETTER MODAL POPUP (FIRST LETTER) -->
+  <div id="surprise-modal" class="modal-overlay hidden">
+    <div class="modal-card surprise-modal-card">
+      <button class="modal-close" id="close-surprise-btn" aria-label="Close Modal">&times;</button>
+      <div class="modal-header">
+        <i class="fa-solid fa-heart modal-heart-icon"></i>
+        <h3 id="modal-letter-title">Farheen's Secret Surprise 💌</h3>
+      </div>
+      <div class="modal-body">
+        <p id="modal-letter-content" class="handwritten-letter-text"></p>
+
+        <!-- TEASER FOR THE DEEP LETTER FROM BOTTOM OF MY HEART -->
+        <div class="second-letter-teaser">
+          <div class="teaser-divider"><span>❤️</span></div>
+          <p class="teaser-hint">There is another letter waiting for you… written straight from the bottom of my heart ✨
+          </p>
+          <button class="btn-action btn-surprise glow-btn" id="open-heart-letter-btn">
+            <i class="fa-solid fa-heart"></i> Read Letter From My Heart ❤️
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-action btn-outline" id="seal-surprise-btn">Close Letter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECOND LETTER MODAL: FROM THE BOTTOM OF MY HEART -->
+  <div id="heart-letter-modal" class="modal-overlay hidden">
+    <div class="modal-card heart-letter-card">
+      <button class="modal-close" id="close-heart-letter-btn" aria-label="Close Modal">&times;</button>
+
+      <div class="modal-header">
+        <span class="heart-badge-pill"><i class="fa-solid fa-heart"></i> Deepest Feelings & Dua</span>
+        <h3 id="heart-letter-main-title" class="heart-modal-title">From The Bottom Of My Heart ❤️</h3>
+        <p class="heart-modal-subtitle">A little something for Farheen Shaikh 🌸</p>
+      </div>
+
+      <div class="modal-body heart-letter-body" id="heart-letter-container">
+        <!-- Structured letter content rendered via JS -->
+      </div>
+
+      <div class="modal-footer heart-modal-footer">
+        <button class="btn-action btn-outline" id="back-to-first-letter-btn">
+          <i class="fa-solid fa-arrow-left"></i> First Letter
+        </button>
+        <button class="btn-action btn-surprise glow-btn" id="seal-heart-letter-btn">
+          With Endless Love & Dua 🤲🏻❤️
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX PHOTO MODAL POPUP -->
+  <div id="lightbox-modal" class="modal-overlay hidden">
+    <div class="lightbox-content">
+      <button class="modal-close" id="close-lightbox-btn" aria-label="Close Lightbox">&times;</button>
+      <div class="lightbox-img-wrapper">
+        <img id="lightbox-img" src="" alt="Farheen Memory">
+      </div>
+      <div class="lightbox-caption-box">
+        <h4 id="lightbox-title"></h4>
+        <p id="lightbox-caption"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING SYNCHRONIZED COMPACT LYRICS PILL (INSIDE BADGE ONLY) -->
+  <div id="lyrics-float-container" class="lyrics-float-container" title="Click to play / pause song">
+    <div class="lyrics-song-badge" id="lyrics-song-badge">
+      <span class="music-wave-mini" id="music-wave-icon">
+        <span></span><span></span><span></span>
+      </span>
+      <span class="song-title-text" id="lyrics-badge-text">🎵 Deeper Than It Seems — Jace June</span>
+    </div>
+  </div>
+
+  <!-- External JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- Lyrics Data -->
+  <script src="script/lyricsData.js"></script>
+  <!-- Main Logic -->
+  <script src="script/main.js?v=20260908_2"></script>
+</body>
+
+</html>
