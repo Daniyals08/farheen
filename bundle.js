@@ -14,6 +14,11 @@ let html = fs.readFileSync(htmlPath, 'utf8');
 // Remove external stylesheet link so browser never blocks on it
 html = html.replace(/<link\s+rel=["']stylesheet["']\s+href=["']style\/style\.css["']\s*\/?>/gi, '');
 
+// Ensure favicon link is present
+if (!html.includes('rel="icon"')) {
+  html = html.replace('<title>', '<link rel="icon" type="image/png" href="img/favicon.png">\n  <title>');
+}
+
 // Ensure style tag is present and up to date
 if (html.includes('id="embedded-site-styles"')) {
   html = html.replace(/<style id="embedded-site-styles">[\s\S]*?<\/style>/, `<style id="embedded-site-styles">\n${css}\n</style>`);
@@ -60,6 +65,13 @@ copyDirRecursive(path.join(__dirname, 'img'), path.join(publicDir, 'img'));
 copyDirRecursive(path.join(__dirname, 'style'), path.join(publicDir, 'style'));
 copyDirRecursive(path.join(__dirname, 'script'), path.join(publicDir, 'script'));
 
+// Copy favicon.ico to root and public
+const faviconSrc = path.join(__dirname, 'img', 'favicon.png');
+if (fs.existsSync(faviconSrc)) {
+  fs.copyFileSync(faviconSrc, path.join(__dirname, 'favicon.ico'));
+  fs.copyFileSync(faviconSrc, path.join(publicDir, 'favicon.ico'));
+}
+
 ['customize.json', 'deeperthanitseems.mp3', 'deeperthanitseems.mpeg'].forEach(file => {
   const src = path.join(__dirname, file);
   if (fs.existsSync(src)) {
@@ -67,4 +79,13 @@ copyDirRecursive(path.join(__dirname, 'script'), path.join(publicDir, 'script'))
   }
 });
 
-console.log('Bundle complete! Embedded index.html and synced all assets to public/ successfully.');
+// Sync to .vercel/output/static for Build Output API v3 direct CDN deployments
+const vercelOutputDir = path.join(__dirname, '.vercel', 'output');
+const vercelStaticDir = path.join(vercelOutputDir, 'static');
+if (!fs.existsSync(vercelStaticDir)) {
+  fs.mkdirSync(vercelStaticDir, { recursive: true });
+}
+fs.writeFileSync(path.join(vercelOutputDir, 'config.json'), JSON.stringify({ version: 3 }, null, 2), 'utf8');
+copyDirRecursive(publicDir, vercelStaticDir);
+
+console.log('Bundle complete! Embedded index.html and synced all assets to public/ and .vercel/output/static successfully.');

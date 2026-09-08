@@ -400,7 +400,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const photoItem = photoList[i % photoList.length];
       const card = document.createElement("div");
       card.className = "rail-photo-card";
-      card.innerHTML = `<img src="${photoItem.url}" alt="${photoItem.title}" loading="lazy">`;
+
+      const img = document.createElement("img");
+      img.src = photoItem.url;
+      img.alt = photoItem.title;
+      img.width = 85;
+      img.height = 115;
+      img.decoding = "async";
+      img.onerror = function () {
+        if (!this.dataset.retried) {
+          this.dataset.retried = "1";
+          this.src = this.src.includes("/img/") ? photoItem.url : "/img/" + photoItem.url.replace(/^img\//, "");
+        }
+      };
+      card.appendChild(img);
       
       card.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -649,7 +662,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     photoGridContainer.innerHTML = filtered.map((p, idx) => `
       <div class="photo-card" data-idx="${idx}">
-        <img src="${p.url}" alt="${p.title}" loading="lazy">
+        <img src="${p.url}" alt="${p.title}" decoding="async" onerror="if(!this.dataset.retried){this.dataset.retried='1';this.src='/' + this.getAttribute('src');}">
         <div class="photo-overlay">
           <span class="photo-title">${p.title}</span>
           <span class="photo-caption">${p.caption}</span>
@@ -997,18 +1010,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }).join("");
   }
   function loadData() {
-    fetch("customize.json?v=" + Date.now(), { cache: "no-store" })
-      .then(res => res.json())
+    fetch("customize.json?v=" + Date.now())
+      .then(res => {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
       .then(data => {
-        if (data) {
+        if (data && data.photos && data.photos.length) {
           appData = data;
           renderApp();
         }
       })
       .catch(err => {
-        console.warn("Using default fallback data", err);
         appData = defaultAppData;
-        renderApp();
       });
   }
 
